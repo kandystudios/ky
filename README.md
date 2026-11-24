@@ -60,20 +60,21 @@ Gizlilik politikası ve koşullar bu ayarlara göre **otomatik** yazılır; bir 
 ### Takip edilen tıklamalar (GA4 olayları)
 Yalnızca ziyaretçi çerezleri kabul ederse gönderilir. Kod: `js/consent.js` → "CLICK TRACKING".
 
-| Olay | Ne zaman | Parametreler |
-|---|---|---|
-| `store_click` | App Store / Google Play / Web butonu (Yakında olanlar dahil) | project, store, status |
-| `project_click` | Ana sayfadaki proje kartı | project |
-| `email_click` | E-posta linkleri | location |
-| `social_click` | LinkedIn | network, location |
-| `cta_click` | "Projelerimizi gör", "Bize ulaş" vb. butonlar | cta, location |
-| `legal_click` | Destek / Gizlilik / Koşullar | legal_page, project |
-| `nav_click` | Üst menü, logo, breadcrumb | link_url, link_text |
-| `footer_click` | Footer linkleri, Çerez ayarları | link_url, link_text |
-| `language_change` | TR / EN / RU | language |
-| `menu_toggle` | Mobil menü | state |
-| `faq_open` | Destek sayfasında SSS açma | question_index, question |
-| `outbound_click` | Diğer dış linkler | link_url, link_domain |
-| `internal_click` | Diğer tüm tıklamalar | link_url, link_text |
+**Her proje kendi adıyla ayrı olay gönderir** (proje adı = slug, tiresiz: `match-mind` → `matchmind`).
+Yeni bir proje eklediğinde olaylar kendiliğinden o projenin adıyla oluşur.
 
-Her olayda ayrıca `page_type` (home / project / privacy / support / terms / site-privacy / site-terms) ve proje sayfalarında `project` gelir.
+| Olay | Ne zaman |
+|---|---|
+| `matchmind_app_store_click` | MatchMind → App Store butonu |
+| `matchmind_google_play_click` | MatchMind → Google Play butonu (`status`: live / coming_soon) |
+| `matchmind_card_click` | Ana sayfada MatchMind kartı |
+| `matchmind_support_click` / `_privacy_click` / `_terms_click` | MatchMind destek ve yasal sayfa linkleri |
+| `matchmind_email_click` | MatchMind sayfalarından e-posta |
+| `matchmind_faq_open` | MatchMind SSS sorusu açıldı |
+| `turnwise_…` | Aynı olaylar Turnwise için |
+
+**Site geneli olaylar:** `email_click`, `social_click` (LinkedIn), `cta_click`, `nav_click`, `footer_click`,
+`language_change`, `menu_toggle`, `site_privacy_click`, `site_terms_click`, `outbound_click`, `internal_click`.
+
+Tüm olaylarda `page_type` ve `location`; proje olaylarında `project` parametresi de gelir.
+Sayfa görüntülemeleri **İçerik grubu** (`content_group`) ile ayrılır: `matchmind`, `turnwise`, `studio`.

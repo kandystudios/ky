@@ -28,6 +28,11 @@
   };
   Object.entries(T).forEach(([k, v]) => ["tr", "en", "ru"].forEach((l) => (extra[l][k] = v[l])));
 
+  const PAGE_TYPE = document.body.dataset.page || "home";
+  const PAGE_PROJECT = document.body.dataset.project || "";
+  // "match-mind" → "matchmind" (GA event names: letters, numbers, underscore)
+  const PREFIX = (slug) => (slug || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+
   /* ---------- Google Analytics ---------- */
   let loaded = false;
   const loadGA = () => {
@@ -38,7 +43,7 @@
     gtag("js", new Date());
     const isGTM = /^GTM-/i.test(GA);
     if (isGTM) dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-    else gtag("config", GA);
+    else gtag("config", GA, { content_group: PAGE_PROJECT ? PREFIX(PAGE_PROJECT) : "studio" });
     const s = document.createElement("script");
     s.async = true;
     s.src = isGTM ? `https://www.googletagmanager.com/gtm.js?id=${GA}` : `https://www.googletagmanager.com/gtag/js?id=${GA}`;
@@ -55,23 +60,23 @@
   /* =========================================================
      CLICK TRACKING — GA4 events (only sent after consent)
      ---------------------------------------------------------
-     store_click       App Store / Google Play / Web buttons   {project, store, status}
-     project_click     Project cards on the home page          {project}
-     email_click       mailto: links                           {location}
-     social_click      LinkedIn etc.                           {network, location}
-     cta_click         Hero / main call-to-action buttons      {cta}
-     legal_click       Support / Privacy / Terms cards & links {legal_page, project}
-     nav_click         Top menu, logo, breadcrumb              {link_url}
-     footer_click      Footer links                            {link_url}
-     language_change   TR / EN / RU switch                     {language}
-     menu_toggle       Mobile hamburger                        {state}
-     faq_open          Support FAQ items                       {question_index, project}
-     outbound_click    Any other external link                 {link_url, link_domain}
-     internal_click    Any other internal link / button        {link_url, link_text}
-     All events also carry: page_type, location
+     Her proje kendi adıyla ayrı olay gönderir (prefix = slug, tiresiz):
+       matchmind_app_store_click     MatchMind → App Store butonu
+       matchmind_google_play_click   MatchMind → Google Play butonu (status: live / coming_soon)
+       matchmind_card_click          Ana sayfadaki MatchMind kartı
+       matchmind_support_click       MatchMind destek / privacy / terms linkleri
+       matchmind_privacy_click, matchmind_terms_click
+       matchmind_email_click         MatchMind sayfalarından e-posta
+       matchmind_faq_open            MatchMind SSS
+       turnwise_…                    aynı olaylar Turnwise için
+     Genel (site) olayları:
+       email_click, social_click, cta_click, nav_click, footer_click,
+       language_change, menu_toggle, site_privacy_click, site_terms_click,
+       outbound_click, internal_click
+     Tüm olaylarda: page_type, location; proje sayfalarında project.
+     Sayfa görüntülemeleri "content_group" ile ayrılır: matchmind / turnwise / studio.
      ========================================================= */
-  const PAGE_TYPE = document.body.dataset.page || "home";
-  const PAGE_PROJECT = document.body.dataset.project || "";
+
   const track = (name, params = {}) => {
     if (!loaded || typeof window.gtag !== "function") return;
     gtag("event", name, { page_type: PAGE_TYPE, ...(PAGE_PROJECT && { project: PAGE_PROJECT }), ...params });
@@ -98,18 +103,21 @@
 
     if (el.matches(".store-btn")) {
       const store = STORE[text(el.querySelector("b") || el)] || "unknown";
-      return track("store_click", { store, status: el.classList.contains("is-soon") ? "coming_soon" : "live", link_url: url ? url.href : "", location: loc });
+      const pr = PREFIX(PAGE_PROJECT || slugFrom(href));
+      return track(`${pr}_${store}_click`, { store, status: el.classList.contains("is-soon") ? "coming_soon" : "live", link_url: url ? url.href : "", location: loc });
     }
     if (el.matches("summary")) return; // handled by FAQ toggle below
     if (el.matches(".lang button")) return track("language_change", { language: el.dataset.lang, location: loc });
     if (el.matches("#burger")) return track("menu_toggle", { state: document.body.classList.contains("menu-open") ? "close" : "open" });
     if (el.matches(".footer__ck")) return track("footer_click", { link_text: "cookie_settings" });
-    if (href.startsWith("mailto:")) return track("email_click", { location: loc });
+    if (href.startsWith("mailto:")) return track(PAGE_PROJECT ? `${PREFIX(PAGE_PROJECT)}_email_click` : "email_click", { location: loc });
     if (url && /linkedin\.com$/i.test(url.hostname.replace(/^www\./, ""))) return track("social_click", { network: "linkedin", location: loc });
-    if (el.matches("a.card")) return track("project_click", { project: slugFrom(href), location: loc });
+    if (el.matches("a.card")) return track(`${PREFIX(slugFrom(href))}_card_click`, { project: slugFrom(href), location: loc });
     if (el.matches(".legal-card") || (url && /\/(privacy|terms|support)\/$/.test(url.pathname))) {
       const m = url ? url.pathname.match(/\/(privacy|terms|support)\/$/) : null;
-      return track("legal_click", { legal_page: m ? m[1] : "unknown", project: slugFrom(href) || "studio", location: loc });
+      const page = m ? m[1] : "unknown";
+      const slug = slugFrom(href);
+      return track(slug ? `${PREFIX(slug)}_${page}_click` : `site_${page}_click`, { legal_page: page, project: slug || "studio", location: loc });
     }
     if (el.closest(".hero__cta") || el.matches(".btn")) return track("cta_click", { cta: (url && url.hash) || text(el), location: loc });
     if (loc === "nav" || el.closest(".crumb")) return track("nav_click", { link_url: url ? url.pathname + url.hash : "", link_text: text(el) });
@@ -123,7 +131,7 @@
     const d = e.target;
     if (!(d instanceof HTMLDetailsElement) || !d.open) return;
     const all = [...document.querySelectorAll(".faq details")];
-    track("faq_open", { question_index: all.indexOf(d) + 1, question: text(d.querySelector("summary")) });
+    track(`${PREFIX(PAGE_PROJECT) || "site"}_faq_open`, { question_index: all.indexOf(d) + 1, question: text(d.querySelector("summary")) });
   }, true);
 
   /* ---------- Banner ---------- */
