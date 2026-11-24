@@ -36,6 +36,7 @@
       "contact.title": 'Shall we build<br /><span class="gold">something together?</span>',
       "contact.sub": "Write to us for collaborations, feedback, or just to say hi.",
       "footer.rights": "All rights reserved.", "footer.top": "Back to top ↑",
+      "footer.privacy": "Privacy Policy", "footer.terms": "Terms of Use",
     },
     ru: {
       "nav.about": "О нас", "nav.projects": "Проекты", "nav.process": "Подход", "nav.contact": "Контакты",
@@ -65,10 +66,14 @@
       "contact.title": 'Создадим что-нибудь<br /><span class="gold">вместе?</span>',
       "contact.sub": "Пишите нам по поводу сотрудничества, с отзывами или просто чтобы поздороваться.",
       "footer.rights": "Все права защищены.", "footer.top": "Наверх ↑",
+      "footer.privacy": "Политика конфиденциальности", "footer.terms": "Условия использования",
     },
     tr: {},
   };
   const LANGS = ["tr", "en", "ru"];
+  // Extra strings registered by other scripts (projects.js / page.js) before this file loads
+  const extra = window.KY_EXTRA || {};
+  LANGS.forEach((l) => Object.assign((dict[l] = dict[l] || {}), extra[l] || {}));
   // Capture Turkish (default) strings from the DOM
   $$("[data-i18n]").forEach((el) => (dict.tr[el.dataset.i18n] = el.textContent));
   $$("[data-i18n-html]").forEach((el) => (dict.tr[el.dataset.i18nHtml] = el.innerHTML));
@@ -93,7 +98,8 @@
 
   /* ---------- Preloader ---------- */
   const finishLoading = () => {
-    $(".loader").classList.add("done");
+    const loader = $(".loader");
+    if (loader) loader.classList.add("done");
     body.classList.remove("is-loading");
     body.classList.add("ready");
   };
@@ -169,13 +175,13 @@
   $$("[data-count]").forEach((el) => countObs.observe(el));
 
   /* ---------- Year ---------- */
-  $("#year").textContent = new Date().getFullYear();
+  $$(".js-year").forEach((el) => (el.textContent = new Date().getFullYear()));
 
   if (reduceMotion || !finePointer) return; // pointer effects only on desktop
 
   /* ---------- Hero: glow follows mouse + logo tilt ---------- */
   const hero = $("#hero"), logo = $(".hero__logo");
-  hero.addEventListener("mousemove", (e) => {
+  if (hero && logo) hero.addEventListener("mousemove", (e) => {
     const r = hero.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
     hero.style.setProperty("--gx", `${x * 100}%`);
@@ -183,7 +189,7 @@
     logo.style.setProperty("--ry", `${(x - 0.5) * 16}deg`);
     logo.style.setProperty("--rx", `${(0.5 - y) * 16}deg`);
   });
-  hero.addEventListener("mouseleave", () => {
+  if (hero && logo) hero.addEventListener("mouseleave", () => {
     hero.style.removeProperty("--gx"); hero.style.removeProperty("--gy");
     logo.style.setProperty("--rx", "0deg"); logo.style.setProperty("--ry", "0deg");
   });

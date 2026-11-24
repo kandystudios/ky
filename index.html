@@ -116,7 +116,7 @@
           <p class="lead reveal" data-i18n="about.p1">K&amp;Y Studios, zihni çalıştıran oyunlar ve günlük hayatı kolaylaştıran uygulamalar geliştiren bağımsız bir stüdyo. Her projeye tek bir soruyla başlıyoruz: “Bu neden daha keyifli olamasın?”</p>
           <p class="reveal" data-i18n="about.p2">Sade arayüzler, akıcı animasyonlar ve oynadıkça derinleşen mekanikler — üzerinde çalıştığımız her şeyde aradığımız denge bu.</p>
           <div class="stats reveal">
-            <div class="stat"><strong data-count="2">0</strong><span data-i18n="about.s1">Yayındaki proje</span></div>
+            <div class="stat"><strong data-count="2" data-count-projects>0</strong><span data-i18n="about.s1">Yayındaki proje</span></div>
             <div class="stat"><strong data-count="100" data-suffix="%">0</strong><span data-i18n="about.s2">Bağımsız</span></div>
             <div class="stat"><strong>∞</strong><span data-i18n="about.s3">Merak</span></div>
           </div>
@@ -132,45 +132,8 @@
           <h2 class="h2" data-i18n-html="projects.title">Üzerinde çalıştığımız <span class="gold">işler</span></h2>
         </div>
 
-        <div class="cards">
-          <!-- Match Mind -->
-          <article class="card reveal tilt">
-            <div class="card__visual card__visual--match" aria-hidden="true">
-              <div class="mm-grid">
-                <div class="mm-card"><div class="mm-front"></div><div class="mm-back">◆</div></div>
-                <div class="mm-card"><div class="mm-front"></div><div class="mm-back">●</div></div>
-                <div class="mm-card"><div class="mm-front"></div><div class="mm-back">▲</div></div>
-                <div class="mm-card"><div class="mm-front"></div><div class="mm-back">◆</div></div>
-                <div class="mm-card"><div class="mm-front"></div><div class="mm-back">▲</div></div>
-                <div class="mm-card"><div class="mm-front"></div><div class="mm-back">●</div></div>
-              </div>
-            </div>
-            <div class="card__body">
-              <div class="card__meta"><span class="pill" data-i18n="tag.game">Oyun</span><span class="pill pill--dim" data-i18n="tag.memory">Hafıza</span></div>
-              <h3>Match Mind</h3>
-              <p data-i18n="mm.desc">Kartları çevir, eşleri bul, hafızanı zorla. Kısa oturumlar için tasarlanmış, oynadıkça zorlaşan bir eşleştirme oyunu.</p>
-              <a href="#" class="card__link" data-i18n="card.more">Detaylar yakında →</a>
-            </div>
-          </article>
-
-          <!-- Turnwise -->
-          <article class="card reveal tilt">
-            <div class="card__visual card__visual--turn" aria-hidden="true">
-              <div class="tw">
-                <div class="tw__ring tw__ring--1"><i></i></div>
-                <div class="tw__ring tw__ring--2"><i></i></div>
-                <div class="tw__ring tw__ring--3"><i></i></div>
-                <div class="tw__core"></div>
-              </div>
-            </div>
-            <div class="card__body">
-              <div class="card__meta"><span class="pill" data-i18n="tag.game">Oyun</span><span class="pill pill--dim" data-i18n="tag.puzzle">Bulmaca</span></div>
-              <h3>Turnwise</h3>
-              <p data-i18n="tw.desc">Halkaları döndür, parçaları hizala. Uzamsal düşünmeyi ve stratejiyi ödüllendiren dairesel bir bulmaca oyunu.</p>
-              <a href="#" class="card__link" data-i18n="card.more">Detaylar yakında →</a>
-            </div>
-          </article>
-
+        <div class="cards" id="projectCards">
+          <!-- Proje kartları data/projects.js'ten otomatik eklenir -->
           <!-- Next -->
           <article class="card card--next reveal">
             <div class="card__visual card__visual--next" aria-hidden="true">
@@ -231,11 +194,16 @@
         <img src="assets/logo-white.png" alt="" />
         <span>K<b>&amp;</b>Y STUDIOS</span>
       </div>
-      <p>© <span id="year"></span> K&amp;Y Studios. <span data-i18n="footer.rights">Tüm hakları saklıdır.</span></p>
+      <div class="footer__mid">
+        <p>© <span class="js-year"></span> K&amp;Y Studios. <span data-i18n="footer.rights">Tüm hakları saklıdır.</span></p>
+        <nav class="footer__legal"><a href="privacy/" data-i18n="footer.privacy">Gizlilik Politikası</a><a href="terms/" data-i18n="footer.terms">Kullanım Koşulları</a></nav>
+      </div>
       <a href="#top" class="footer__top" data-i18n="footer.top">Yukarı ↑</a>
     </div>
   </footer>
 
+  <script src="data/projects.js"></script>
+  <script src="js/projects.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
