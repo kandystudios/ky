@@ -60,6 +60,7 @@
     return `<img class="visual-icon" src="${ROOT}${p.icon || "assets/logo-white.png"}" alt="" />`;
   };
   const pills = (p) =>
+    (p.status === "soon" ? `<span class="pill pill--soon">${t(S.soon)}</span>` : "") +
     (p.tags.en || []).map((_, i) => `<span class="pill${i ? " pill--dim" : ""}" data-i18n-html="${reg({ tr: p.tags.tr?.[i], en: p.tags.en[i], ru: p.tags.ru?.[i] })}">${pick({ tr: p.tags.tr?.[i] }, "tr") || p.tags.en[i]}</span>`).join("");
 
   /* =========================================================

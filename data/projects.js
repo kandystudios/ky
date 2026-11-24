@@ -16,7 +16,7 @@ window.KY_PROJECTS = [
     name: "Match Mind",
     visual: "match",              // "match" | "turn" | "icon"  (icon → aşağıdaki icon görseli)
     icon: "",                     // örn. "assets/projects/match-mind/icon.png"
-    status: "live",               // "live" | "soon"
+    status: "live",               // "live" (yayında) | "soon" (yakında)
     platforms: ["ios", "android"],
     stores: {
       appStore: "",               // App Store linki gelince buraya
@@ -90,7 +90,7 @@ window.KY_PROJECTS = [
     name: "Turnwise",
     visual: "turn",
     icon: "",
-    status: "live",
+    status: "soon",
     platforms: ["ios", "android"],
     stores: { appStore: "", googlePlay: "", web: "" },
     // ⚠️ GİZLİLİK AYARLARI — uygulamanın gerçekte kullandıklarına göre düzelt.
