@@ -17,10 +17,10 @@ window.KY_PROJECTS = [
     visual: "match",              // "match" | "turn" | "icon"  (icon → aşağıdaki icon görseli)
     icon: "",                     // örn. "assets/projects/match-mind/icon.png"
     status: "live",               // "live" (yayında) | "soon" (yakında)
-    platforms: ["ios"],           // "ios" | "android" | "web"
+    platforms: ["ios", "android"], // "ios" | "android" | "web"  (store linki boşsa "Yakında" görünür)
     stores: {
       appStore: "https://apps.apple.com/tr/app/matchmind-matching-card-game/id6803246135",
-      googlePlay: "",
+      googlePlay: "",             // Play Store linki gelince buraya yapıştır
       web: "",
     },
     // ⚠️ GİZLİLİK AYARLARI — App Store'daki "App Privacy" beyanıyla aynı olmalı.
