@@ -379,6 +379,43 @@ body.ready .hero__logo-wrap { animation: float 6s ease-in-out 1.6s infinite; }
 @keyframes spin { 0% { rotate: 0deg; } 25% { rotate: 90deg; } 50% { rotate: 90deg; } 75% { rotate: 270deg; } 100% { rotate: 360deg; } }
 .card:hover .tw__ring { animation-duration: 2.5s; }
 
+/* Turnwise visual — screw puzzle */
+.sc { position: relative; width: 64%; aspect-ratio: 1; }
+.sc__plate {
+  position: absolute; display: flex; justify-content: space-between; align-items: center;
+  padding: 0 7%; border-radius: 14px;
+}
+.sc__plate--3 { z-index: 2; left: 30%; top: 6%; width: 26%; height: 86%; flex-direction: column; justify-content: space-between; padding: 14% 0; align-items: center;
+  background: #1c1c20; border: 1px solid rgba(201,198,192,.2); rotate: 24deg; }
+.sc__plate--2 { z-index: 1; left: 4%; top: 52%; width: 86%; height: 22%; background: var(--muted); rotate: 14deg; opacity: .92; }
+.sc__plate--1 { z-index: 3; left: 6%; top: 24%; width: 88%; height: 22%; background: var(--gold); rotate: -12deg;
+  box-shadow: 0 14px 30px -12px rgba(0,0,0,.7); animation: plateDrop 6s var(--ease) infinite; }
+.sc__screw {
+  position: relative; width: 22px; height: 22px; flex: none; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff, #c9c6c0 60%, #8d8a84);
+  box-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+.sc__screw::before, .sc__screw::after { content: ""; position: absolute; left: 50%; top: 50%; width: 56%; height: 2px; margin: -1px 0 0 -28%; background: #2a2a2e; border-radius: 2px; }
+.sc__screw::after { rotate: 90deg; }
+.sc__plate--1 .sc__screw { animation: unscrew 6s var(--ease) infinite; }
+.sc__plate--1 .sc__screw:last-child { animation-delay: .25s; }
+.sc__plate--2 .sc__screw, .sc__plate--3 .sc__screw { animation: wiggle 6s ease-in-out infinite; }
+@keyframes unscrew {
+  0%, 8%  { transform: none; opacity: 1; }
+  28%     { transform: rotate(-540deg) scale(1.35); opacity: 1; }
+  34%     { transform: rotate(-600deg) scale(1.5) translateY(-8px); opacity: 0; }
+  90%     { transform: none; opacity: 0; }
+  100%    { transform: none; opacity: 1; }
+}
+@keyframes plateDrop {
+  0%, 34% { transform: none; opacity: 1; }
+  58%     { transform: translateY(260%) rotate(28deg); opacity: 0; }
+  86%     { transform: translateY(-20%); opacity: 0; }
+  100%    { transform: none; opacity: 1; }
+}
+@keyframes wiggle { 0%, 40%, 100% { rotate: 0deg; } 45% { rotate: -25deg; } 50% { rotate: 0deg; } }
+.card:hover .sc__plate--1, .card:hover .sc__plate--1 .sc__screw { animation-duration: 3.5s; }
+
 /* Next visual */
 .card__visual--next img { width: 40%; opacity: .14; transition: opacity .6s var(--ease), transform .8s var(--ease); }
 .card--next:hover .card__visual--next img { opacity: .5; transform: scale(1.06) rotate(-3deg); }

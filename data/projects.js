@@ -14,7 +14,7 @@ window.KY_PROJECTS = [
   {
     slug: "match-mind",           // URL'de kullanılan ad (değiştirme: linkler bozulur)
     name: "MatchMind",
-    visual: "match",              // "match" | "turn" | "icon"  (icon → aşağıdaki icon görseli)
+    visual: "match",              // "match" | "screw" | "turn" | "icon"  (icon → aşağıdaki icon görseli)
     icon: "",                     // örn. "assets/projects/match-mind/icon.png"
     status: "live",               // "live" (yayında) | "soon" (yakında)
     platforms: ["ios", "android"], // "ios" | "android" | "web"  (store linki boşsa "Yakında" görünür)
@@ -99,62 +99,63 @@ window.KY_PROJECTS = [
   {
     slug: "turnwise",
     name: "Turnwise",
-    visual: "turn",
+    visual: "screw",
     icon: "",
     status: "soon",
     platforms: ["ios", "android"],
     stores: { appStore: "", googlePlay: "", web: "" },
-    // ⚠️ GİZLİLİK AYARLARI — uygulamanın gerçekte kullandıklarına göre düzelt.
-    privacy: { ads: false, analytics: false, crashReports: false, purchases: false, account: false },
+    // ⚠️ GİZLİLİK AYARLARI — yayına çıkmadan önce uygulamanın gerçekte kullandıklarına göre düzelt
+    // ve App Store / Play Console'daki veri beyanıyla aynı yap.
+    privacy: { ads: false, analytics: false, crashReports: false, purchases: false, account: false, gameCenter: false, notifications: false },
     updated: "2026-11-24",
-    tags: { tr: ["Oyun", "Bulmaca"], en: ["Game", "Puzzle"], ru: ["Игра", "Головоломка"] },
+    tags: { tr: ["Bulmaca", "Strateji"], en: ["Puzzle", "Strategy"], ru: ["Головоломка", "Стратегия"] },
     tagline: {
-      tr: "Halkaları döndür, parçaları hizala.",
-      en: "Rotate the rings, line up the pieces.",
-      ru: "Вращайте кольца, выстраивайте элементы.",
+      tr: "Vidaları sök, plakaları serbest bırak.",
+      en: "Unscrew the bolts, free the plates.",
+      ru: "Откручивайте болты, освобождайте пластины.",
     },
     summary: {
-      tr: "Halkaları döndür, parçaları hizala. Uzamsal düşünmeyi ve stratejiyi ödüllendiren dairesel bir bulmaca oyunu.",
-      en: "Rotate the rings, line up the pieces. A circular puzzle game that rewards spatial thinking and strategy.",
-      ru: "Вращайте кольца, выстраивайте элементы. Круговая головоломка, которая вознаграждает пространственное мышление и стратегию.",
+      tr: "Doğru vidayı doğru sırayla sök, plakaları düşür ve tahtayı temizle. Her hamlenin önemli olduğu, rahatlatıcı ama zorlayıcı bir vida bulmacası.",
+      en: "Unscrew the right bolt in the right order, drop the plates and clear the board. A relaxing yet tricky screw puzzle where every move counts.",
+      ru: "Откручивайте нужные болты в правильном порядке, роняйте пластины и очищайте поле. Расслабляющая, но хитрая головоломка с болтами, где важен каждый ход.",
     },
     description: {
-      tr: "Turnwise, iç içe geçmiş halkaları döndürerek parçaları doğru yere oturttuğun dairesel bir bulmaca oyunu. Her hamle diğer halkaları da etkiler; bu yüzden birkaç adım önünü düşünmen gerekir. Basit kurallar, derinleşen bulmacalar.",
-      en: "Turnwise is a circular puzzle game where you rotate nested rings to slot every piece into place. Each move affects the others, so you need to think a few steps ahead. Simple rules, ever-deeper puzzles.",
-      ru: "Turnwise — круговая головоломка, в которой нужно вращать вложенные кольца, чтобы поставить каждый элемент на место. Каждый ход влияет на остальные, поэтому думать приходится на несколько шагов вперёд. Простые правила, всё более глубокие задачи.",
+      tr: "Turnwise’ta tahtadaki plakalar vidalarla birbirine tutturulmuş. Vidalara dokunarak onları sök, plakaları serbest bırak ve tüm tahtayı temizle. Ama dikkat: yer sınırlı ve plakalar üst üste binmiş — hangi vidayı ne zaman sökeceğini planlamazsan sıkışabilirsin. Kısa, tatmin edici ve bir sonraki bölümü merak ettiren bir bulmaca deneyimi.",
+      en: "In Turnwise, plates are held together by screws. Tap the screws to unscrew them, set the plates free and clear the whole board. But careful: space is limited and plates overlap — if you don’t plan which screw to take out and when, you can get stuck. Short, satisfying puzzles that keep you coming back for the next level.",
+      ru: "В Turnwise пластины скреплены болтами. Нажимайте на болты, чтобы откручивать их, освобождайте пластины и очищайте всё поле. Но будьте внимательны: места мало, а пластины перекрывают друг друга — если не продумать, какой болт и когда откручивать, можно застрять. Короткие головоломки, которые приятно решать и хочется продолжать.",
     },
     features: {
       tr: [
-        ["Dairesel bulmacalar", "Halkaları döndür, deseni tamamla."],
-        ["Strateji gerektirir", "Her hamle tüm tahtayı etkiler."],
-        ["Elle hazırlanmış seviyeler", "Yavaş yavaş zorlaşan, özenle tasarlanmış bölümler."],
-        ["Çevrimdışı oyna", "İnternet bağlantısı gerekmez."],
+        ["Vida bulmacası", "Vidaları sök, plakaları düşür, tahtayı temizle."],
+        ["Sıralama önemli", "Üst üste binen plakalar her hamleyi düşündürür."],
+        ["Giderek zorlaşır", "Her bölümde daha fazla plaka ve vida."],
+        ["Tatmin edici his", "Akıcı animasyonlar ve rahatlatıcı bir oyun akışı."],
       ],
       en: [
-        ["Circular puzzles", "Rotate the rings and complete the pattern."],
-        ["Strategic thinking", "Every move changes the whole board."],
-        ["Hand-crafted levels", "Carefully designed stages that ramp up gradually."],
-        ["Play offline", "No internet connection required."],
+        ["Screw puzzles", "Unscrew, drop the plates, clear the board."],
+        ["Order matters", "Overlapping plates make every move a decision."],
+        ["Rising challenge", "More plates and screws with every level."],
+        ["Satisfying feel", "Smooth animation and a relaxing flow."],
       ],
       ru: [
-        ["Круговые головоломки", "Вращайте кольца и собирайте узор."],
-        ["Стратегия", "Каждый ход меняет всё поле."],
-        ["Уровни ручной работы", "Тщательно продуманные этапы с плавным ростом сложности."],
-        ["Играйте офлайн", "Подключение к интернету не требуется."],
+        ["Головоломки с болтами", "Откручивайте, роняйте пластины, очищайте поле."],
+        ["Важен порядок", "Перекрывающиеся пластины заставляют обдумывать каждый ход."],
+        ["Растущая сложность", "С каждым уровнем больше пластин и болтов."],
+        ["Приятные ощущения", "Плавная анимация и расслабляющий ритм."],
       ],
     },
     faq: {
       tr: [
-        ["Bir bölümde takıldım, ne yapmalıyım?", "Halkaları tek tek değil, birlikte nasıl etkilendiklerini düşünerek dene. Hâlâ takılıysan bize yaz."],
-        ["İnternet bağlantısı gerekiyor mu?", "Hayır, Turnwise tamamen çevrimdışı oynanabilir."],
+        ["Turnwise ne zaman çıkacak?", "Çok yakında! Haberdar olmak için LinkedIn’de bizi takip et."],
+        ["Bir bölümde sıkıştım, ne yapmalıyım?", "Önce en üstteki plakaları serbest bırakmaya odaklan ve boş yerleri idareli kullan. Hâlâ takılıysan bize yaz."],
       ],
       en: [
-        ["I’m stuck on a level. Any tips?", "Think about how the rings affect each other rather than one at a time. Still stuck? Write to us."],
-        ["Do I need an internet connection?", "No, Turnwise can be played completely offline."],
+        ["When is Turnwise coming out?", "Very soon! Follow us on LinkedIn to hear first."],
+        ["I’m stuck on a level. Any tips?", "Focus on freeing the top plates first and use empty spots wisely. Still stuck? Write to us."],
       ],
       ru: [
-        ["Застрял на уровне. Что делать?", "Думайте о том, как кольца влияют друг на друга, а не о каждом по отдельности. Всё ещё сложно? Напишите нам."],
-        ["Нужен ли интернет?", "Нет, в Turnwise можно играть полностью офлайн."],
+        ["Когда выйдет Turnwise?", "Совсем скоро! Подписывайтесь на нас в LinkedIn, чтобы узнать первыми."],
+        ["Застрял на уровне. Что делать?", "Сначала освобождайте верхние пластины и бережно используйте свободные места. Всё ещё сложно? Напишите нам."],
       ],
     },
   },

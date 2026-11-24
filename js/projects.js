@@ -55,6 +55,8 @@
   const visual = (p) => {
     if (p.visual === "match")
       return `<div class="mm-grid">${["◆", "●", "▲", "◆", "▲", "●"].map((s) => `<div class="mm-card"><div class="mm-front"></div><div class="mm-back">${s}</div></div>`).join("")}</div>`;
+    if (p.visual === "screw")
+      return `<div class="sc">${[1, 2, 3].map((i) => `<div class="sc__plate sc__plate--${i}"><span class="sc__screw"></span><span class="sc__screw"></span></div>`).join("")}</div>`;
     if (p.visual === "turn")
       return `<div class="tw"><div class="tw__ring tw__ring--1"><i></i></div><div class="tw__ring tw__ring--2"><i></i></div><div class="tw__ring tw__ring--3"><i></i></div><div class="tw__core"></div></div>`;
     return `<img class="visual-icon" src="${ROOT}${p.icon || "assets/logo-white.png"}" alt="" />`;
