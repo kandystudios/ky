@@ -23,6 +23,11 @@ assets/           Logo (beyaz/koyu, şeffaf), favicon, sosyal medya kapak görse
 - **Metinler:** Türkçe metinler `index.html`'de; İngilizce ve Rusça metinler `js/main.js` içindeki `dict.en` ve `dict.ru` nesnelerinde. (Poppins Kiril harf desteklemediği için Rusçada otomatik olarak Montserrat kullanılır.)
 - **Yeni proje kartı:** `<article class="card reveal tilt">` bloğunu kopyala.
 
+## Sitenin yasal sayfaları
+- `/privacy/` — web sitesinin gizlilik politikası
+- `/terms/` — web sitesinin kullanım koşulları
+Her sayfanın footer'ında bağlantıları var. Metinler `js/projects.js` içindeki "STUDIO (website) LEGAL PAGES" bölümünde.
+
 ## Projeler ve yasal sayfalar
 Her projenin kendi sayfası, **gizlilik politikası**, **destek** ve **kullanım koşulları** sayfası vardır:
 

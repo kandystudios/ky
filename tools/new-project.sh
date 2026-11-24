@@ -84,7 +84,10 @@ write_page() { # $1 = alt klasör ("" | privacy | support | terms), $2 = page ti
         <img src="${R}assets/logo-white.png" alt="" />
         <span>K<b>&amp;</b>Y STUDIOS</span>
       </a>
-      <p>© <span class="js-year"></span> K&amp;Y Studios. <span data-i18n="footer.rights">Tüm hakları saklıdır.</span></p>
+      <div class="footer__mid">
+        <p>© <span class="js-year"></span> K&amp;Y Studios. <span data-i18n="footer.rights">Tüm hakları saklıdır.</span></p>
+        <nav class="footer__legal"><a href="${R}privacy/" data-i18n="footer.privacy">Gizlilik Politikası</a><a href="${R}terms/" data-i18n="footer.terms">Kullanım Koşulları</a></nav>
+      </div>
       <a href="#" class="footer__top" data-i18n="footer.top">Yukarı ↑</a>
     </div>
   </footer>

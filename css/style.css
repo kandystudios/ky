@@ -434,6 +434,11 @@ body.ready .hero__logo-wrap { animation: float 6s ease-in-out 1.6s infinite; }
 .footer__brand { display: flex; align-items: center; gap: .6rem; color: var(--white); font-weight: 700; letter-spacing: .12em; }
 .footer__brand img { width: 34px; }
 .footer__top { color: var(--white); transition: color .3s; }
+.footer__mid { display: grid; gap: .3rem; justify-items: center; text-align: center; }
+.footer__legal { display: flex; flex-wrap: wrap; justify-content: center; gap: .3rem 1.2rem; font-size: .8rem; }
+.footer__legal a { color: var(--muted); opacity: .75; transition: color .3s, opacity .3s; }
+.footer__legal a:hover { color: var(--gold); opacity: 1; }
+.legal-links.legal-links--2 { grid-template-columns: repeat(2, 1fr); }
 .footer__top:hover { color: var(--gold); }
 
 /* =========================================================
@@ -612,7 +617,7 @@ a.store-btn:hover small, a.store-btn:hover b { color: var(--bg-2); }
   .phero__grid { grid-template-columns: 1fr; }
   .phero__visual { max-width: 460px; width: 100%; }
   .pabout { grid-template-columns: 1fr; gap: 0; }
-  .legal-links { grid-template-columns: 1fr; }
+  .legal-links, .legal-links.legal-links--2 { grid-template-columns: 1fr; }
   .support-box { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {

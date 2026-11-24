@@ -92,6 +92,104 @@
      PROJECT SUB-PAGES
      ========================================================= */
   const app = document.getElementById("app");
+
+  /* =========================================================
+     STUDIO (website) LEGAL PAGES — /privacy/ and /terms/
+     ========================================================= */
+  if (app && (PAGE === "site-privacy" || PAGE === "site-terms")) {
+    const SITE_UPDATED = "2026-11-24";
+    const v = { email: mail };
+    const isPriv = PAGE === "site-privacy";
+    const titleObj = isPriv ? S.privacy : S.terms;
+    const k = reg({ tr: `${titleObj.tr} | K&Y Studios`, en: `${titleObj.en} | K&Y Studios`, ru: `${titleObj.ru} | K&Y Studios` });
+    document.title = extra.tr[k];
+    document.querySelector("title").setAttribute("data-i18n", k);
+
+    const appLinks = (kind) =>
+      `<ul>${projects.map((x) => `<li><a href="${ROOT}projects/${x.slug}/${kind}/">${x.name}</a></li>`).join("")}</ul>`;
+    const ext = (href, label) => `<a href="${href}" target="_blank" rel="noopener">${label}</a>`;
+
+    const secs = isPriv
+      ? [
+          [{ tr: "Topladığımız bilgiler", en: "What we collect", ru: "Какие данные мы собираем" }, [
+            { tr: "Bu web sitesinde hesap, form, analitik veya reklam çerezi yoktur ve sizden kişisel bilgi istemeyiz.", en: "This website has no accounts, forms, analytics or advertising cookies, and we do not ask you for personal information.", ru: "На этом сайте нет учётных записей, форм, аналитики или рекламных cookie, и мы не запрашиваем у вас персональные данные." },
+            { tr: "Bize e-posta gönderirseniz, e-posta adresinizi ve mesajınızın içeriğini yalnızca size yanıt vermek için kullanırız.", en: "If you email us, we use your email address and the content of your message only to reply to you.", ru: "Если вы пишете нам на email, мы используем ваш адрес и содержание письма только для ответа вам." },
+          ]],
+          [{ tr: "Barındırma", en: "Hosting", ru: "Хостинг" }, [
+            { tr: `Site ${ext("https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement", "GitHub Pages")} üzerinde barındırılır. GitHub, güvenlik amacıyla ziyaretçilerin IP adresini kaydedebilir.`, en: `The site is hosted on ${ext("https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement", "GitHub Pages")}. GitHub may log visitors’ IP addresses for security purposes.`, ru: `Сайт размещён на ${ext("https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement", "GitHub Pages")}. GitHub может записывать IP-адреса посетителей в целях безопасности.` },
+          ]],
+          [{ tr: "Yazı tipleri", en: "Fonts", ru: "Шрифты" }, [
+            { tr: `Yazı tipleri ${ext("https://policies.google.com/privacy", "Google Fonts")} üzerinden yüklenir. Bu sırada tarayıcınız IP adresinizi Google’a iletir.`, en: `Fonts are loaded from ${ext("https://policies.google.com/privacy", "Google Fonts")}. When this happens, your browser sends your IP address to Google.`, ru: `Шрифты загружаются через ${ext("https://policies.google.com/privacy", "Google Fonts")}. При этом ваш браузер передаёт ваш IP-адрес Google.` },
+          ]],
+          [{ tr: "Tarayıcı depolaması", en: "Browser storage", ru: "Хранилище браузера" }, [
+            { tr: "Seçtiğiniz dili hatırlamak için tarayıcınızın yerel depolamasına (localStorage) küçük bir kayıt yazarız. Bu bir çerez değildir, bize gönderilmez ve tarayıcı ayarlarınızdan silebilirsiniz.", en: "We save your chosen language in your browser’s local storage (localStorage). This is not a cookie, is never sent to us, and you can clear it in your browser settings.", ru: "Мы сохраняем выбранный язык в локальном хранилище браузера (localStorage). Это не cookie, данные не передаются нам, и их можно удалить в настройках браузера." },
+          ]],
+          [{ tr: "Uygulamalarımız", en: "Our apps", ru: "Наши приложения" }, [
+            { tr: "Her uygulamamızın kendi gizlilik politikası vardır:", en: "Each of our apps has its own privacy policy:", ru: "У каждого нашего приложения есть своя политика конфиденциальности:" },
+            appLinks("privacy"),
+          ]],
+          [{ tr: "Dış bağlantılar", en: "External links", ru: "Внешние ссылки" }, [
+            { tr: "Site, LinkedIn, App Store ve Google Play gibi başka sitelere bağlantılar içerir. Bu sitelerin kendi gizlilik politikaları geçerlidir.", en: "The site links to other websites such as LinkedIn, the App Store and Google Play. Their own privacy policies apply.", ru: "Сайт содержит ссылки на другие ресурсы, например LinkedIn, App Store и Google Play. На них действуют их собственные политики конфиденциальности." },
+          ]],
+          [{ tr: "Haklarınız", en: "Your rights", ru: "Ваши права" }, [
+            { tr: "KVKK, GDPR ve benzeri düzenlemeler kapsamında kişisel verilerinize erişme, bunları düzeltme veya silme haklarınızı kullanmak için {email} adresine yazın.", en: "To exercise your rights to access, correct or delete your personal data under KVKK, the GDPR or similar laws, email us at {email}.", ru: "Чтобы воспользоваться правом на доступ, исправление или удаление персональных данных согласно KVKK, GDPR или аналогичным законам, напишите нам на {email}." },
+          ]],
+          [{ tr: "Değişiklikler", en: "Changes", ru: "Изменения" }, [
+            { tr: "Bu politikayı zaman zaman güncelleyebiliriz. Değişiklikler, yeni bir “Son güncelleme” tarihiyle bu sayfada yayımlanır.", en: "We may update this policy from time to time. Changes are posted on this page with a new “Last updated” date.", ru: "Мы можем время от времени обновлять эту политику. Изменения публикуются на этой странице с новой датой «Последнее обновление»." },
+          ]],
+          [{ tr: "İletişim", en: "Contact", ru: "Контакты" }, [
+            { tr: "Sorularınız için: {email}", en: "Questions? Email us at {email}.", ru: "Вопросы? Напишите нам на {email}." },
+          ]],
+        ]
+      : [
+          [{ tr: "Sitenin kullanımı", en: "Use of the site", ru: "Использование сайта" }, [
+            { tr: "Bu web sitesi K&amp;Y Studios’u ve projelerini tanıtmak için hazırlanmıştır. Siteyi yalnızca hukuka uygun amaçlarla ve işleyişini bozmayacak şekilde kullanmayı kabul edersiniz.", en: "This website introduces K&amp;Y Studios and its projects. You agree to use it only for lawful purposes and in a way that does not interfere with its operation.", ru: "Этот сайт представляет K&amp;Y Studios и её проекты. Вы обязуетесь использовать его только в законных целях и не нарушать его работу." },
+          ]],
+          [{ tr: "Fikri mülkiyet", en: "Intellectual property", ru: "Интеллектуальная собственность" }, [
+            { tr: "Sitedeki tasarım, metinler, görseller ile K&amp;Y Studios adı ve logosu K&amp;Y Studios’a aittir. Yazılı iznimiz olmadan kopyalanamaz veya ticari amaçla kullanılamaz.", en: "The design, text, images and the K&amp;Y Studios name and logo on this site belong to K&amp;Y Studios. They may not be copied or used commercially without our written permission.", ru: "Дизайн, тексты, изображения, а также название и логотип K&amp;Y Studios на этом сайте принадлежат K&amp;Y Studios. Их нельзя копировать или использовать в коммерческих целях без нашего письменного разрешения." },
+          ]],
+          [{ tr: "Uygulamalarımız", en: "Our apps", ru: "Наши приложения" }, [
+            { tr: "Uygulamalarımızın kullanımı, her birinin kendi kullanım koşullarına tabidir:", en: "Use of our apps is governed by each app’s own terms:", ru: "Использование наших приложений регулируется их собственными условиями:" },
+            appLinks("terms"),
+          ]],
+          [{ tr: "Dış bağlantılar", en: "External links", ru: "Внешние ссылки" }, [
+            { tr: "Sitedeki üçüncü taraf bağlantılarının içeriğinden sorumlu değiliz.", en: "We are not responsible for the content of third-party websites linked from this site.", ru: "Мы не несём ответственности за содержание сторонних сайтов, на которые ведут ссылки." },
+          ]],
+          [{ tr: "Sorumluluk reddi", en: "Disclaimer", ru: "Отказ от гарантий" }, [
+            { tr: "Site “olduğu gibi” sunulur. Bilgilerin doğru ve güncel olması için çaba gösteririz ancak bunu garanti etmeyiz. Yasaların izin verdiği ölçüde, sitenin kullanımından doğan zararlardan sorumlu değiliz.", en: "The site is provided “as is”. We try to keep information accurate and up to date but do not guarantee it. To the extent permitted by law, we are not liable for any damages arising from use of the site.", ru: "Сайт предоставляется «как есть». Мы стараемся поддерживать информацию точной и актуальной, но не гарантируем этого. В пределах, допускаемых законом, мы не несём ответственности за ущерб, связанный с использованием сайта." },
+          ]],
+          [{ tr: "Değişiklikler", en: "Changes", ru: "Изменения" }, [
+            { tr: "Bu koşulları dilediğimiz zaman güncelleyebiliriz. Güncel sürüm her zaman bu sayfadadır.", en: "We may update these terms at any time. The current version is always on this page.", ru: "Мы можем в любое время обновить эти условия. Актуальная версия всегда находится на этой странице." },
+          ]],
+          [{ tr: "İletişim", en: "Contact", ru: "Контакты" }, [
+            { tr: "Sorularınız için: {email}", en: "Questions? Email us at {email}.", ru: "Вопросы? Напишите нам на {email}." },
+          ]],
+        ];
+
+    const intro = isPriv
+      ? { tr: "Bu politika, K&amp;Y Studios web sitesini (“Site”) ziyaret ettiğinizde bilgilerin nasıl ele alındığını açıklar. Uygulamalarımızın her birinin ayrı bir gizlilik politikası vardır.", en: "This policy explains how information is handled when you visit the K&amp;Y Studios website (the “Site”). Each of our apps has its own separate privacy policy.", ru: "Эта политика описывает, как обрабатывается информация при посещении сайта K&amp;Y Studios («Сайт»). У каждого нашего приложения есть отдельная политика конфиденциальности." }
+      : { tr: "Bu koşullar, K&amp;Y Studios web sitesini (“Site”) kullanımınızı düzenler. Siteyi kullanarak bu koşulları kabul etmiş olursunuz.", en: "These terms govern your use of the K&amp;Y Studios website (the “Site”). By using the Site, you agree to them.", ru: "Эти условия регулируют использование сайта K&amp;Y Studios («Сайт»). Пользуясь Сайтом, вы соглашаетесь с ними." };
+
+    app.innerHTML = `
+      <section class="legal">
+        <div class="container legal__inner">
+          <nav class="crumb reveal" aria-label="Breadcrumb"><a href="${ROOT}index.html">K&amp;Y Studios</a><span>/</span>${t(titleObj, "span", 'aria-current="page"')}</nav>
+          <header class="legal__head reveal">${t(titleObj, "h1")}${t(S.updated, "p", 'class="legal__date"', fmtDate(SITE_UPDATED))}</header>
+          ${t(intro, "p", 'class="lead reveal"', v)}
+          ${secs.map(([h, parts], i) => `
+            <section class="legal__sec reveal">
+              <h2><span class="num">${String(i + 1).padStart(2, "0")}</span>${t(h)}</h2>
+              ${parts.map((x) => (typeof x === "string" ? x : t(x, "p", "", v))).join("")}
+            </section>`).join("")}
+          <div class="legal-links legal-links--2 reveal">
+            <a class="legal-card${isPriv ? " is-active" : ""}" href="${ROOT}privacy/">${t(S.privacy, "strong")}<i>→</i></a>
+            <a class="legal-card${!isPriv ? " is-active" : ""}" href="${ROOT}terms/">${t(S.terms, "strong")}<i>→</i></a>
+          </div>
+        </div>
+      </section>`;
+    return;
+  }
+
   const p = projects.find((x) => x.slug === body.dataset.project);
   if (!app || !p) return;
 

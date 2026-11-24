@@ -36,6 +36,7 @@
       "contact.title": 'Shall we build<br /><span class="gold">something together?</span>',
       "contact.sub": "Write to us for collaborations, feedback, or just to say hi.",
       "footer.rights": "All rights reserved.", "footer.top": "Back to top ↑",
+      "footer.privacy": "Privacy Policy", "footer.terms": "Terms of Use",
     },
     ru: {
       "nav.about": "О нас", "nav.projects": "Проекты", "nav.process": "Подход", "nav.contact": "Контакты",
@@ -65,6 +66,7 @@
       "contact.title": 'Создадим что-нибудь<br /><span class="gold">вместе?</span>',
       "contact.sub": "Пишите нам по поводу сотрудничества, с отзывами или просто чтобы поздороваться.",
       "footer.rights": "Все права защищены.", "footer.top": "Наверх ↑",
+      "footer.privacy": "Политика конфиденциальности", "footer.terms": "Условия использования",
     },
     tr: {},
   };
