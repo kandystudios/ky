@@ -56,3 +56,24 @@ Gizlilik politikası ve koşullar bu ayarlara göre **otomatik** yazılır; bir 
 - **Search Console:** `index.html` içindeki `<meta name="google-site-verification" content="">` satırına Google'ın verdiği kodu yaz.
 - **Sitemap:** `sitemap.xml` → Search Console'da "Sitemaps" bölümüne `sitemap.xml` olarak gönder.
   Yeni proje eklediğinde `new-project.sh` sitemap'i otomatik günceller (elle: `./tools/sitemap.sh`).
+
+### Takip edilen tıklamalar (GA4 olayları)
+Yalnızca ziyaretçi çerezleri kabul ederse gönderilir. Kod: `js/consent.js` → "CLICK TRACKING".
+
+| Olay | Ne zaman | Parametreler |
+|---|---|---|
+| `store_click` | App Store / Google Play / Web butonu (Yakında olanlar dahil) | project, store, status |
+| `project_click` | Ana sayfadaki proje kartı | project |
+| `email_click` | E-posta linkleri | location |
+| `social_click` | LinkedIn | network, location |
+| `cta_click` | "Projelerimizi gör", "Bize ulaş" vb. butonlar | cta, location |
+| `legal_click` | Destek / Gizlilik / Koşullar | legal_page, project |
+| `nav_click` | Üst menü, logo, breadcrumb | link_url, link_text |
+| `footer_click` | Footer linkleri, Çerez ayarları | link_url, link_text |
+| `language_change` | TR / EN / RU | language |
+| `menu_toggle` | Mobil menü | state |
+| `faq_open` | Destek sayfasında SSS açma | question_index, question |
+| `outbound_click` | Diğer dış linkler | link_url, link_domain |
+| `internal_click` | Diğer tüm tıklamalar | link_url, link_text |
+
+Her olayda ayrıca `page_type` (home / project / privacy / support / terms / site-privacy / site-terms) ve proje sayfalarında `project` gelir.

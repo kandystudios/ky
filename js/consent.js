@@ -52,6 +52,80 @@
     });
   };
 
+  /* =========================================================
+     CLICK TRACKING — GA4 events (only sent after consent)
+     ---------------------------------------------------------
+     store_click       App Store / Google Play / Web buttons   {project, store, status}
+     project_click     Project cards on the home page          {project}
+     email_click       mailto: links                           {location}
+     social_click      LinkedIn etc.                           {network, location}
+     cta_click         Hero / main call-to-action buttons      {cta}
+     legal_click       Support / Privacy / Terms cards & links {legal_page, project}
+     nav_click         Top menu, logo, breadcrumb              {link_url}
+     footer_click      Footer links                            {link_url}
+     language_change   TR / EN / RU switch                     {language}
+     menu_toggle       Mobile hamburger                        {state}
+     faq_open          Support FAQ items                       {question_index, project}
+     outbound_click    Any other external link                 {link_url, link_domain}
+     internal_click    Any other internal link / button        {link_url, link_text}
+     All events also carry: page_type, location
+     ========================================================= */
+  const PAGE_TYPE = document.body.dataset.page || "home";
+  const PAGE_PROJECT = document.body.dataset.project || "";
+  const track = (name, params = {}) => {
+    if (!loaded || typeof window.gtag !== "function") return;
+    gtag("event", name, { page_type: PAGE_TYPE, ...(PAGE_PROJECT && { project: PAGE_PROJECT }), ...params });
+  };
+  window.kyTrack = track;
+
+  const where = (el) => {
+    if (el.closest(".nav")) return "nav";
+    if (el.closest(".footer")) return "footer";
+    if (el.closest(".consent")) return "cookie_banner";
+    const sec = el.closest("section[id], section[class]");
+    return (sec && (sec.id || sec.className.split(" ")[0])) || "page";
+  };
+  const slugFrom = (href) => ((href || "").match(/projects\/([^/]+)\//) || [])[1] || "";
+  const text = (el) => (el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
+  const STORE = { "App Store": "app_store", "Google Play": "google_play", Web: "web" };
+
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest("a, button, .store-btn, summary");
+    if (!el || el.closest(".consent")) return;
+    const href = el.getAttribute("href") || "";
+    const url = href ? new URL(href, location.href) : null;
+    const loc = where(el);
+
+    if (el.matches(".store-btn")) {
+      const store = STORE[text(el.querySelector("b") || el)] || "unknown";
+      return track("store_click", { store, status: el.classList.contains("is-soon") ? "coming_soon" : "live", link_url: url ? url.href : "", location: loc });
+    }
+    if (el.matches("summary")) return; // handled by FAQ toggle below
+    if (el.matches(".lang button")) return track("language_change", { language: el.dataset.lang, location: loc });
+    if (el.matches("#burger")) return track("menu_toggle", { state: document.body.classList.contains("menu-open") ? "close" : "open" });
+    if (el.matches(".footer__ck")) return track("footer_click", { link_text: "cookie_settings" });
+    if (href.startsWith("mailto:")) return track("email_click", { location: loc });
+    if (url && /linkedin\.com$/i.test(url.hostname.replace(/^www\./, ""))) return track("social_click", { network: "linkedin", location: loc });
+    if (el.matches("a.card")) return track("project_click", { project: slugFrom(href), location: loc });
+    if (el.matches(".legal-card") || (url && /\/(privacy|terms|support)\/$/.test(url.pathname))) {
+      const m = url ? url.pathname.match(/\/(privacy|terms|support)\/$/) : null;
+      return track("legal_click", { legal_page: m ? m[1] : "unknown", project: slugFrom(href) || "studio", location: loc });
+    }
+    if (el.closest(".hero__cta") || el.matches(".btn")) return track("cta_click", { cta: (url && url.hash) || text(el), location: loc });
+    if (loc === "nav" || el.closest(".crumb")) return track("nav_click", { link_url: url ? url.pathname + url.hash : "", link_text: text(el) });
+    if (loc === "footer") return track("footer_click", { link_url: url ? url.pathname + url.hash : "", link_text: text(el) });
+    if (url && url.host !== location.host) return track("outbound_click", { link_url: url.href, link_domain: url.hostname, location: loc });
+    track("internal_click", { link_url: url ? url.pathname + url.hash : "", link_text: text(el), location: loc });
+  }, true);
+
+  // FAQ opens (support pages)
+  document.addEventListener("toggle", (e) => {
+    const d = e.target;
+    if (!(d instanceof HTMLDetailsElement) || !d.open) return;
+    const all = [...document.querySelectorAll(".faq details")];
+    track("faq_open", { question_index: all.indexOf(d) + 1, question: text(d.querySelector("summary")) });
+  }, true);
+
   /* ---------- Banner ---------- */
   const banner = document.createElement("div");
   banner.className = "consent";
