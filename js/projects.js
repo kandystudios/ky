@@ -101,6 +101,7 @@
      ========================================================= */
   if (app && (PAGE === "site-privacy" || PAGE === "site-terms")) {
     const SITE_UPDATED = "2026-11-24";
+    const GA = (window.KY_CONFIG || {}).gaId;
     const v = { email: mail };
     const isPriv = PAGE === "site-privacy";
     const titleObj = isPriv ? S.privacy : S.terms;
@@ -115,7 +116,9 @@
     const secs = isPriv
       ? [
           [{ tr: "Topladığımız bilgiler", en: "What we collect", ru: "Какие данные мы собираем" }, [
-            { tr: "Bu web sitesinde hesap, form, analitik veya reklam çerezi yoktur ve sizden kişisel bilgi istemeyiz.", en: "This website has no accounts, forms, analytics or advertising cookies, and we do not ask you for personal information.", ru: "На этом сайте нет учётных записей, форм, аналитики или рекламных cookie, и мы не запрашиваем у вас персональные данные." },
+            GA
+              ? { tr: "Bu web sitesinde hesap, form veya reklam çerezi yoktur ve sizden kişisel bilgi istemeyiz. Yalnızca izin verirseniz, aşağıda açıklandığı şekilde Google Analytics kullanırız.", en: "This website has no accounts, forms or advertising cookies, and we do not ask you for personal information. Only if you allow it, we use Google Analytics as described below.", ru: "На этом сайте нет учётных записей, форм или рекламных cookie, и мы не запрашиваем у вас персональные данные. Только с вашего согласия мы используем Google Analytics, как описано ниже." }
+              : { tr: "Bu web sitesinde hesap, form, analitik veya reklam çerezi yoktur ve sizden kişisel bilgi istemeyiz.", en: "This website has no accounts, forms, analytics or advertising cookies, and we do not ask you for personal information.", ru: "На этом сайте нет учётных записей, форм, аналитики или рекламных cookie, и мы не запрашиваем у вас персональные данные." },
             { tr: "Bize e-posta gönderirseniz, e-posta adresinizi ve mesajınızın içeriğini yalnızca size yanıt vermek için kullanırız.", en: "If you email us, we use your email address and the content of your message only to reply to you.", ru: "Если вы пишете нам на email, мы используем ваш адрес и содержание письма только для ответа вам." },
           ]],
           [{ tr: "Barındırma", en: "Hosting", ru: "Хостинг" }, [
@@ -124,8 +127,14 @@
           [{ tr: "Yazı tipleri", en: "Fonts", ru: "Шрифты" }, [
             { tr: `Yazı tipleri ${ext("https://policies.google.com/privacy", "Google Fonts")} üzerinden yüklenir. Bu sırada tarayıcınız IP adresinizi Google’a iletir.`, en: `Fonts are loaded from ${ext("https://policies.google.com/privacy", "Google Fonts")}. When this happens, your browser sends your IP address to Google.`, ru: `Шрифты загружаются через ${ext("https://policies.google.com/privacy", "Google Fonts")}. При этом ваш браузер передаёт ваш IP-адрес Google.` },
           ]],
+          GA && [{ tr: "Analitik ve çerezler", en: "Analytics and cookies", ru: "Аналитика и cookie" }, [
+            { tr: `Çerez bandında “Kabul et”i seçerseniz, ziyaretçilerin siteyi nasıl kullandığını anlamak için ${ext("https://policies.google.com/privacy", "Google Analytics 4")} kullanırız: görüntülenen sayfalar, yaklaşık konum (ülke/şehir), cihaz ve tarayıcı türü ve siteye nereden geldiğiniz gibi. Google Analytics, 2 yıla kadar saklanan çerezler (<code>_ga</code>, <code>_ga_*</code>) kullanır.`, en: `If you choose “Accept” in the cookie banner, we use ${ext("https://policies.google.com/privacy", "Google Analytics 4")} to understand how visitors use the site — for example pages viewed, approximate location (country/city), device and browser type, and how you arrived. Google Analytics uses cookies (<code>_ga</code>, <code>_ga_*</code>) stored for up to 2 years.`, ru: `Если вы нажмёте «Принять» в баннере cookie, мы используем ${ext("https://policies.google.com/privacy", "Google Analytics 4")}, чтобы понимать, как посетители пользуются сайтом: просмотренные страницы, приблизительное местоположение (страна/город), тип устройства и браузера, а также откуда вы пришли. Google Analytics использует cookie (<code>_ga</code>, <code>_ga_*</code>), которые хранятся до 2 лет.` },
+            { tr: "Bu verileri sizi tanımlamak veya reklam için kullanmayız. Reddederseniz Google Analytics hiç yüklenmez. Tercihinizi istediğiniz zaman sayfanın altındaki “Çerez ayarları” bağlantısından değiştirebilirsiniz.", en: "We do not use this data to identify you or for advertising. If you decline, Google Analytics is not loaded at all. You can change your choice at any time via the “Cookie settings” link at the bottom of the page.", ru: "Мы не используем эти данные для вашей идентификации или рекламы. Если вы откажетесь, Google Analytics вообще не загружается. Изменить выбор можно в любой момент по ссылке «Настройки cookie» внизу страницы." },
+          ]],
           [{ tr: "Tarayıcı depolaması", en: "Browser storage", ru: "Хранилище браузера" }, [
-            { tr: "Seçtiğiniz dili hatırlamak için tarayıcınızın yerel depolamasına (localStorage) küçük bir kayıt yazarız. Bu bir çerez değildir, bize gönderilmez ve tarayıcı ayarlarınızdan silebilirsiniz.", en: "We save your chosen language in your browser’s local storage (localStorage). This is not a cookie, is never sent to us, and you can clear it in your browser settings.", ru: "Мы сохраняем выбранный язык в локальном хранилище браузера (localStorage). Это не cookie, данные не передаются нам, и их можно удалить в настройках браузера." },
+            GA
+              ? { tr: "Seçtiğiniz dili ve çerez tercihinizi hatırlamak için tarayıcınızın yerel depolamasına (localStorage) küçük kayıtlar yazarız. Bunlar çerez değildir, bize gönderilmez ve tarayıcı ayarlarınızdan silebilirsiniz.", en: "We save your chosen language and your cookie choice in your browser’s local storage (localStorage). These are not cookies, are never sent to us, and you can clear them in your browser settings.", ru: "Мы сохраняем выбранный язык и ваш выбор по cookie в локальном хранилище браузера (localStorage). Это не cookie, данные не передаются нам, и их можно удалить в настройках браузера." }
+              : { tr: "Seçtiğiniz dili hatırlamak için tarayıcınızın yerel depolamasına (localStorage) küçük bir kayıt yazarız. Bu bir çerez değildir, bize gönderilmez ve tarayıcı ayarlarınızdan silebilirsiniz.", en: "We save your chosen language in your browser’s local storage (localStorage). This is not a cookie, is never sent to us, and you can clear it in your browser settings.", ru: "Мы сохраняем выбранный язык в локальном хранилище браузера (localStorage). Это не cookie, данные не передаются нам, и их можно удалить в настройках браузера." },
           ]],
           [{ tr: "Uygulamalarımız", en: "Our apps", ru: "Наши приложения" }, [
             { tr: "Her uygulamamızın kendi gizlilik politikası vardır:", en: "Each of our apps has its own privacy policy:", ru: "У каждого нашего приложения есть своя политика конфиденциальности:" },
@@ -179,7 +188,7 @@
           <nav class="crumb reveal" aria-label="Breadcrumb"><a href="${ROOT}index.html">K&amp;Y Studios</a><span>/</span>${t(titleObj, "span", 'aria-current="page"')}</nav>
           <header class="legal__head reveal">${t(titleObj, "h1")}${t(S.updated, "p", 'class="legal__date"', fmtDate(SITE_UPDATED))}</header>
           ${t(intro, "p", 'class="lead reveal"', v)}
-          ${secs.map(([h, parts], i) => `
+          ${secs.filter(Boolean).map(([h, parts], i) => `
             <section class="legal__sec reveal">
               <h2><span class="num">${String(i + 1).padStart(2, "0")}</span>${t(h)}</h2>
               ${parts.map((x) => (typeof x === "string" ? x : t(x, "p", "", v))).join("")}

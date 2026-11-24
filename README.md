@@ -48,3 +48,11 @@ Gizlilik politikası ve koşullar bu ayarlara göre **otomatik** yazılır; bir 
 1. `data/projects.js` içine yeni bir blok ekle (mevcut birini kopyala, `slug`'ı değiştir).
 2. Terminalde: `./tools/new-project.sh yeni-slug`
 3. Commit + push. Ana sayfadaki kart ve 4 sayfa kendiliğinden oluşur.
+
+## Google Analytics ve Search Console
+- **Analytics:** `js/config.js` içindeki `gaId: ""` alanına GA4 ölçüm kimliğini yaz (örn. `"G-AB12CD34EF"`).
+  Ziyaretçiye çerez bandı çıkar; Analytics yalnızca "Kabul et" derse yüklenir.
+  Sitenin gizlilik politikasına Analytics bölümü otomatik eklenir. Footer'da "Çerez ayarları" linki çıkar.
+- **Search Console:** `index.html` içindeki `<meta name="google-site-verification" content="">` satırına Google'ın verdiği kodu yaz.
+- **Sitemap:** `sitemap.xml` → Search Console'da "Sitemaps" bölümüne `sitemap.xml` olarak gönder.
+  Yeni proje eklediğinde `new-project.sh` sitemap'i otomatik günceller (elle: `./tools/sitemap.sh`).

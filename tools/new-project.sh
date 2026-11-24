@@ -93,8 +93,10 @@ write_page() { # $1 = alt klasör ("" | privacy | support | terms), $2 = page ti
   </footer>
 
   <noscript><p style="padding:8rem 2rem;text-align:center">Please enable JavaScript to view this page.</p></noscript>
+  <script src="${R}js/config.js"></script>
   <script src="${R}data/projects.js"></script>
   <script src="${R}js/projects.js"></script>
+  <script src="${R}js/consent.js"></script>
   <script src="${R}js/main.js"></script>
 </body>
 </html>
@@ -106,6 +108,8 @@ write_page ""        project "../../"
 write_page privacy   privacy "../../../"
 write_page support   support "../../../"
 write_page terms     terms   "../../../"
+
+./tools/sitemap.sh >/dev/null && echo "✓ sitemap.xml güncellendi"
 
 echo ""
 echo "Bitti! Linkler (yayına aldıktan sonra):"
