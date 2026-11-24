@@ -195,7 +195,7 @@
   if (!app || !p) return;
 
   const P = p.privacy || {};
-  const anyData = P.ads || P.analytics || P.crashReports || P.account;
+  const anyData = P.ads || P.analytics || P.crashReports || P.account || P.gameCenter;
   const projUrl = `${ROOT}projects/${p.slug}/`;
   const titles = { project: null, privacy: S.privacy, support: S.support, terms: S.terms };
 
@@ -301,7 +301,7 @@
     const third = [
       P.ads && `<li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google AdMob</a></li>`,
       (P.analytics || P.crashReports) && `<li><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Google Firebase</a></li>`,
-      P.purchases && `<li><a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple App Store</a></li>`,
+      (P.purchases || P.gameCenter) && `<li><a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple${P.gameCenter ? " (Game Center)" : " App Store"}</a></li>`,
       P.purchases && `<li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Play</a></li>`,
     ].filter(Boolean);
 
@@ -325,9 +325,9 @@
                     ru: "<b>Реклама.</b> Приложение показывает рекламу через сторонние рекламные сервисы (например, Google AdMob). Эти сервисы могут собирать идентификаторы устройства (например, рекламный идентификатор), IP-адрес, приблизительное местоположение и сведения о взаимодействии с рекламой, чтобы показывать и оценивать её. На iOS персонализированная реклама показывается, только если вы разрешили отслеживание в запросе Apple App Tracking Transparency. Рекламный идентификатор можно в любой момент сбросить или ограничить в настройках устройства.",
                   },
                   P.analytics && {
-                    tr: "<b>Analitik.</b> Uygulamanın nasıl kullanıldığını anlamak için bir analitik servisi (ör. Google Analytics for Firebase) kullanırız — örneğin hangi bölümlerin oynandığı ve oturumların ne kadar sürdüğü. Bu veriler rastgele bir uygulama kimliğiyle toplanır, adınız veya iletişim bilgilerinizle ilişkilendirilmez ve yalnızca Uygulamayı geliştirmek için kullanılır.",
-                    en: "<b>Analytics.</b> We use an analytics service (such as Google Analytics for Firebase) to understand how the App is used — for example which levels are played and how long sessions last. This data is collected with a random app-instance identifier, is not linked to your name or contact details and is used only to improve the App.",
-                    ru: "<b>Аналитика.</b> Мы используем сервис аналитики (например, Google Analytics for Firebase), чтобы понимать, как используется Приложение, — например, какие уровни проходят и сколько длятся сессии. Данные собираются со случайным идентификатором экземпляра приложения, не связаны с вашим именем или контактами и используются только для улучшения Приложения.",
+                    tr: "<b>Analitik.</b> Uygulamanın nasıl kullanıldığını anlamak için bir analitik servisi (ör. Google Analytics for Firebase) kullanırız — örneğin hangi bölümlerin oynandığı ve oturumların ne kadar sürdüğü. Bu veriler cihaz tanımlayıcılarıyla ilişkilendirilebilir ancak adınız veya iletişim bilgilerinizle ilişkilendirilmez.",
+                    en: "<b>Analytics.</b> We use an analytics service (such as Google Analytics for Firebase) to understand how the App is used — for example which levels are played and how long sessions last. This data may be associated with device identifiers but is not linked to your name or contact details.",
+                    ru: "<b>Аналитика.</b> Мы используем сервис аналитики (например, Google Analytics for Firebase), чтобы понимать, как используется Приложение, — например, какие уровни проходят и сколько длятся сессии. Эти данные могут быть связаны с идентификаторами устройства, но не с вашим именем или контактами.",
                   },
                   P.crashReports && {
                     tr: "<b>Hata raporları.</b> Uygulama çökerse, bir hata raporlama servisi (ör. Firebase Crashlytics) bize cihaz modeli, işletim sistemi sürümü ve çökme anındaki uygulama durumu gibi teknik bilgiler gönderebilir. Bu bilgileri yalnızca hataları bulup düzeltmek için kullanırız.",
@@ -343,6 +343,16 @@
                     tr: "<b>Uygulama içi satın almalar.</b> Satın almalar tamamen Apple (App Store) veya Google (Google Play) tarafından işlenir. Ödeme bilgilerinizi hiçbir zaman almayız veya saklamayız; yalnızca içeriği açabilmek için satın alma yapıldığına dair onay alırız.",
                     en: "<b>In-app purchases.</b> Purchases are processed entirely by Apple (App Store) or Google (Google Play). We never receive or store your payment details; we only receive confirmation that a purchase was made so we can unlock content.",
                     ru: "<b>Встроенные покупки.</b> Покупки полностью обрабатываются Apple (App Store) или Google (Google Play). Мы никогда не получаем и не храним ваши платёжные данные — только подтверждение покупки, чтобы открыть контент.",
+                  },
+                  P.gameCenter && {
+                    tr: "<b>Game Center.</b> Apple Game Center’a giriş yaptıysanız, liderlik tablolarını göstermek için skorlarınız, yıldızlarınız ve başarımlarınız Apple’a gönderilir. Game Center profiliniz Apple tarafından kendi gizlilik politikasına göre yönetilir.",
+                    en: "<b>Game Center.</b> If you are signed in to Apple Game Center, your scores, stars and achievements are sent to Apple to show leaderboards. Your Game Center profile is handled by Apple under its own privacy policy.",
+                    ru: "<b>Game Center.</b> Если вы вошли в Apple Game Center, ваши очки, звёзды и достижения передаются Apple для отображения таблиц лидеров. Ваш профиль Game Center обрабатывается Apple в соответствии с её политикой конфиденциальности.",
+                  },
+                  P.notifications && {
+                    tr: "<b>Bildirimler.</b> İsteğe bağlı günlük hatırlatıcı cihazınızda yerel olarak planlanır. Uygulamadan veya cihaz ayarlarından dilediğiniz zaman kapatabilirsiniz.",
+                    en: "<b>Notifications.</b> The optional daily reminder is scheduled locally on your device. You can turn it off at any time in the App or in your device settings.",
+                    ru: "<b>Уведомления.</b> Необязательное ежедневное напоминание планируется локально на вашем устройстве. Его можно отключить в любой момент в Приложении или в настройках устройства.",
                   },
                 ]),
                 { tr: "Kişisel verilerinizi satmayız.", en: "We do not sell your personal data.", ru: "Мы не продаём ваши персональные данные." },

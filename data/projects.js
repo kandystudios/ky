@@ -12,75 +12,86 @@
 
 window.KY_PROJECTS = [
   {
-    slug: "match-mind",
-    name: "Match Mind",
+    slug: "match-mind",           // URL'de kullanılan ad (değiştirme: linkler bozulur)
+    name: "MatchMind",
     visual: "match",              // "match" | "turn" | "icon"  (icon → aşağıdaki icon görseli)
     icon: "",                     // örn. "assets/projects/match-mind/icon.png"
     status: "live",               // "live" (yayında) | "soon" (yakında)
-    platforms: ["ios", "android"],
+    platforms: ["ios"],           // "ios" | "android" | "web"
     stores: {
-      appStore: "",               // App Store linki gelince buraya
-      googlePlay: "",             // Google Play linki gelince buraya
+      appStore: "https://apps.apple.com/tr/app/matchmind-matching-card-game/id6803246135",
+      googlePlay: "",
       web: "",
     },
-    // ⚠️ GİZLİLİK AYARLARI — uygulamanın gerçekte kullandıklarına göre düzelt.
+    // ⚠️ GİZLİLİK AYARLARI — App Store'daki "App Privacy" beyanıyla aynı olmalı.
     // Gizlilik politikası bu değerlerden otomatik yazılır.
     privacy: {
-      ads: false,                 // Google AdMob vb. reklam SDK'sı var mı?
-      analytics: false,           // Firebase Analytics vb. var mı?
-      crashReports: false,        // Crashlytics vb. var mı?
-      purchases: false,           // Uygulama içi satın alma var mı?
-      account: false,             // Kullanıcı hesabı / giriş var mı?
+      ads: true,                  // Reklam SDK'sı (ör. Google AdMob) — App Store: "Contains Advertising"
+      analytics: true,            // Kullanım verisi (Product Interaction) — App Store beyanında var
+      crashReports: true,         // Diagnostics (Crash / Performance Data) — App Store beyanında var
+      purchases: false,           // Uygulama içi satın alma yok
+      account: false,             // Hesap yok, ilerleme cihazda
+      gameCenter: true,           // Game Center liderlik tabloları ve başarımlar
+      notifications: true,        // İsteğe bağlı günlük hatırlatıcı (yerel bildirim)
     },
     updated: "2026-11-24",        // Yasal sayfaların "son güncelleme" tarihi
-    tags: { tr: ["Oyun", "Hafıza"], en: ["Game", "Memory"], ru: ["Игра", "Память"] },
+    tags: { tr: ["Bulmaca", "Hafıza"], en: ["Puzzle", "Memory"], ru: ["Головоломка", "Память"] },
     tagline: {
-      tr: "Kartları çevir, eşleri bul, hafızanı zorla.",
-      en: "Flip the cards, find the pairs, push your memory.",
-      ru: "Переворачивайте карточки, находите пары, тренируйте память.",
+      tr: "Eşleri bul, hafızanı zorla — her gün yeni bir görev.",
+      en: "Find the pairs, train your memory — a new challenge every day.",
+      ru: "Находите пары, тренируйте память — новое испытание каждый день.",
     },
     summary: {
-      tr: "Kartları çevir, eşleri bul, hafızanı zorla. Kısa oturumlar için tasarlanmış, oynadıkça zorlaşan bir eşleştirme oyunu.",
-      en: "Flip the cards, find the pairs, push your memory. A matching game built for short sessions that gets harder the more you play.",
-      ru: "Переворачивайте карточки, находите пары, тренируйте память. Игра на поиск пар для коротких сессий, которая становится сложнее с каждым уровнем.",
+      tr: "Her gün yeni bir Günlük Görev, dört dünyada 60 bölüm ve sürpriz kurallar. Hafızanı zorlayan, sade ve akıcı bir kart eşleştirme oyunu.",
+      en: "A new Daily Challenge every day, 60 levels across four worlds and surprising twists. A clean, smooth card-matching game that pushes your memory.",
+      ru: "Новое ежедневное испытание, 60 уровней в четырёх мирах и неожиданные повороты. Лаконичная и плавная игра на поиск пар, которая тренирует память.",
     },
     description: {
-      tr: "Match Mind, hafızanı ve dikkatini eğlenceli bir şekilde çalıştıran sade bir kart eşleştirme oyunu. Kartları çevir, yerlerini aklında tut ve tüm eşleri en az hamlede bulmaya çalış. Birkaç dakikalık molalar için ideal; ama bir kere başlayınca bırakmak zor.",
-      en: "Match Mind is a clean card-matching game that trains your memory and focus in a fun way. Flip the cards, remember where they are and try to find every pair in as few moves as possible. Perfect for a few minutes’ break — but hard to put down once you start.",
-      ru: "Match Mind — лаконичная игра на поиск пар, которая в увлекательной форме тренирует память и внимание. Переворачивайте карточки, запоминайте их расположение и старайтесь найти все пары за минимальное число ходов. Идеально для коротких перерывов — но оторваться сложно.",
+      tr: "MatchMind, kartları çevirip eşlerini bulduğun, sade ama derinleşen bir hafıza oyunu. Her gün tüm oyuncular için aynı olan Günlük Görev’i çöz ve serini koru ya da dört dünyaya yayılmış 60 bölümde ilerle. Karıştırma ve birbirine benzeyen kartlar gibi sürprizler işleri ilginç tutar; takıldığında Peek ile tüm tahtaya göz atabilir, Rahat modda süre ve hamle sınırı olmadan oynayabilirsin.",
+      en: "MatchMind is a clean but surprisingly deep memory game: flip the cards and find the pairs. Solve the Daily Challenge — the same puzzle for every player — and keep your streak alive, or work through 60 levels across four worlds. Twists like shuffles and look-alike cards keep things interesting; when you’re stuck, use Peek to see the whole board, or switch to Relaxed mode to play without a timer or move limit.",
+      ru: "MatchMind — лаконичная, но удивительно глубокая игра на память: переворачивайте карточки и находите пары. Решайте Ежедневное испытание — одну и ту же головоломку для всех игроков — и сохраняйте серию или проходите 60 уровней в четырёх мирах. Перемешивание и похожие карточки не дают заскучать, а если застряли — используйте Peek, чтобы увидеть всё поле, или включите спокойный режим без таймера и лимита ходов.",
     },
     features: {
       tr: [
-        ["Zorlaşan seviyeler", "Her seviyede daha fazla kart, daha fazla meydan okuma."],
-        ["Kısa oturumlar", "Birkaç dakikada bir tur; molalar için birebir."],
-        ["Sade tasarım", "Dikkat dağıtmayan, akıcı animasyonlu arayüz."],
-        ["Çevrimdışı oyna", "İnternet bağlantısı gerekmez."],
+        ["Günlük Görev", "Herkes için aynı bulmaca; skorunu paylaş, serini koru."],
+        ["60 bölüm, 4 dünya", "Meyve & Sebze, Hayvanlar, İkonlar ve Desenler; 6’dan 12 çifte büyüyen tahtalar."],
+        ["Sürpriz kurallar", "Karıştırma ve birbirine benzeyen kartlarla yeni zorluklar."],
+        ["Rahat ve erişilebilir", "Rahat mod, Peek, çevrimdışı oyun, VoiceOver ve Dynamic Type desteği."],
       ],
       en: [
-        ["Growing challenge", "More cards and a bigger challenge with every level."],
-        ["Short sessions", "A round takes a few minutes — perfect for breaks."],
-        ["Clean design", "A distraction-free interface with smooth animation."],
-        ["Play offline", "No internet connection required."],
+        ["Daily Challenge", "The same puzzle for everyone — share your score and keep your streak."],
+        ["60 levels, 4 worlds", "Fruit & Veg, Animals, Icons and Patterns, with boards growing from 6 to 12 pairs."],
+        ["Twists", "Shuffles and look-alike cards add fresh challenges."],
+        ["Relaxed & accessible", "Relaxed mode, Peek, offline play, VoiceOver and Dynamic Type support."],
       ],
       ru: [
-        ["Растущая сложность", "С каждым уровнем больше карточек и интереснее задачи."],
-        ["Короткие сессии", "Раунд занимает пару минут — идеально для перерыва."],
-        ["Чистый дизайн", "Интерфейс без лишнего, с плавной анимацией."],
-        ["Играйте офлайн", "Подключение к интернету не требуется."],
+        ["Ежедневное испытание", "Одна головоломка для всех — делитесь результатом и сохраняйте серию."],
+        ["60 уровней, 4 мира", "Фрукты и овощи, Животные, Иконки и Узоры — поля от 6 до 12 пар."],
+        ["Неожиданные правила", "Перемешивание и похожие карточки добавляют новых задач."],
+        ["Спокойно и доступно", "Спокойный режим, Peek, игра офлайн, поддержка VoiceOver и Dynamic Type."],
       ],
     },
     faq: {
       tr: [
-        ["İnternet bağlantısı gerekiyor mu?", "Hayır, Match Mind tamamen çevrimdışı oynanabilir."],
-        ["İlerlememi nasıl sıfırlarım?", "Uygulamayı silip yeniden yüklediğinde tüm ilerleme sıfırlanır."],
+        ["Hesap açmam gerekiyor mu?", "Hayır. İlerlemen cihazında saklanır."],
+        ["Peek nedir, nasıl kazanırım?", "Peek, takıldığında tüm tahtayı gösterir. Günlük çarktan veya isteğe bağlı ödüllü videolardan kazanabilirsin."],
+        ["Serimi nasıl korurum?", "Her beş Günlük Görev’de bir seri dondurucu kazanırsın; böylece bir günü kaçırdığında serin bozulmaz."],
+        ["Oyun sırasında reklam çıkar mı?", "Hayır. Kısa reklamlar yalnızca bazen bölümler arasında gösterilir; oyun sırasında, eğitimde ve Günlük Görev’de asla çıkmaz."],
+        ["İnternet bağlantısı gerekiyor mu?", "Hayır, MatchMind çevrimdışı oynanabilir."],
       ],
       en: [
-        ["Do I need an internet connection?", "No, Match Mind can be played completely offline."],
-        ["How do I reset my progress?", "Deleting and reinstalling the app resets all progress."],
+        ["Do I need an account?", "No. Your progress is saved on your device."],
+        ["What is Peek and how do I get more?", "Peek reveals the whole board when you’re stuck. You can earn more from the daily wheel or optional rewarded videos."],
+        ["How do I protect my streak?", "Every five Daily Challenges you complete earns a streak freeze, so missing a day won’t break your streak."],
+        ["Will ads interrupt my game?", "No. Short ads occasionally appear between levels — never during play, in the tutorial or in the Daily Challenge."],
+        ["Do I need an internet connection?", "No, MatchMind can be played offline."],
       ],
       ru: [
-        ["Нужен ли интернет?", "Нет, в Match Mind можно играть полностью офлайн."],
-        ["Как сбросить прогресс?", "Удалите и заново установите приложение — весь прогресс будет сброшен."],
+        ["Нужна ли учётная запись?", "Нет. Прогресс сохраняется на вашем устройстве."],
+        ["Что такое Peek и как получить больше?", "Peek показывает всё поле, если вы застряли. Его можно получить в ежедневном колесе или за просмотр необязательного рекламного ролика."],
+        ["Как сохранить серию?", "За каждые пять ежедневных испытаний вы получаете «заморозку» серии, и пропущенный день не прервёт её."],
+        ["Будет ли реклама мешать игре?", "Нет. Короткая реклама иногда показывается между уровнями — но никогда во время игры, обучения или ежедневного испытания."],
+        ["Нужен ли интернет?", "Нет, в MatchMind можно играть офлайн."],
       ],
     },
   },
