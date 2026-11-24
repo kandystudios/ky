@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>K&amp;Y Studios — Games &amp; Apps</title>
+  <meta name="description" content="K&Y Studios — merakla üretilen oyunlar ve uygulamalar. Match Mind, Turnwise ve daha fazlası." />
+  <meta name="theme-color" content="#0d0d0f" />
+
+  <meta property="og:title" content="K&Y Studios — Games & Apps" />
+  <meta property="og:description" content="Games & apps · made with curiosity." />
+  <meta property="og:image" content="assets/og-cover.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="is-loading">
+
+  <!-- Preloader -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <img src="assets/logo-white.png" alt="" class="loader__logo" />
+      <div class="loader__paws">
+        <span class="paw"></span><span class="paw"></span><span class="paw"></span><span class="paw"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mouse paw trail container -->
+  <div class="trail" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand" aria-label="K&Y Studios">
+      <img src="assets/logo-white.png" alt="" />
+      <span>K<b>&amp;</b>Y</span>
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#about" data-i18n="nav.about">Hakkımızda</a>
+      <a href="#projects" data-i18n="nav.projects">Projeler</a>
+      <a href="#process" data-i18n="nav.process">Yaklaşım</a>
+      <a href="#contact" data-i18n="nav.contact">İletişim</a>
+      <div class="lang lang--menu" role="group" aria-label="Language">
+        <button data-lang="tr" aria-pressed="true">TR</button>
+        <button data-lang="en" aria-pressed="false">EN</button>
+        <button data-lang="ru" aria-pressed="false">RU</button>
+        <span class="lang__pill" aria-hidden="true"></span>
+      </div>
+    </nav>
+    <div class="nav__actions">
+      <div class="lang lang--nav" role="group" aria-label="Language">
+        <button data-lang="tr" aria-pressed="true">TR</button>
+        <button data-lang="en" aria-pressed="false">EN</button>
+        <button data-lang="ru" aria-pressed="false">RU</button>
+        <span class="lang__pill" aria-hidden="true"></span>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero__grid" aria-hidden="true"></div>
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__steps" aria-hidden="true">
+        <span class="step"></span><span class="step"></span><span class="step"></span>
+        <span class="step"></span><span class="step"></span><span class="step"></span>
+        <span class="step"></span><span class="step"></span>
+      </div>
+
+      <div class="hero__content">
+        <div class="hero__logo-wrap">
+          <img src="assets/logo-white.png" alt="K&Y Studios logo" class="hero__logo" />
+        </div>
+        <h1 class="hero__title">
+          <span class="line"><span>K<em>&amp;</em>Y</span></span>
+          <span class="line"><span>STUDIOS</span></span>
+        </h1>
+        <p class="hero__tag" data-i18n="hero.tag">Oyunlar &amp; Uygulamalar · Merakla üretildi</p>
+        <div class="hero__cta">
+          <a href="#projects" class="btn btn--gold magnetic" data-i18n="hero.cta1">Projelerimizi gör</a>
+          <a href="#contact" class="btn btn--ghost magnetic" data-i18n="hero.cta2">Bize ulaş</a>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-hint" aria-label="Scroll">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>GAMES</span><i>✦</i><span>APPS</span><i>✦</i><span>PUZZLES</span><i>✦</i><span>MADE WITH CURIOSITY</span><i>✦</i>
+        <span>GAMES</span><i>✦</i><span>APPS</span><i>✦</i><span>PUZZLES</span><i>✦</i><span>MADE WITH CURIOSITY</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="section about" id="about">
+      <div class="container about__grid">
+        <div class="about__left reveal">
+          <p class="eyebrow" data-i18n="about.eyebrow">Hakkımızda</p>
+          <h2 class="h2" data-i18n-html="about.title">Kedi gibi meraklı,<br /><span class="gold">kedi gibi titiz.</span></h2>
+        </div>
+        <div class="about__right">
+          <p class="lead reveal" data-i18n="about.p1">K&amp;Y Studios, zihni çalıştıran oyunlar ve günlük hayatı kolaylaştıran uygulamalar geliştiren bağımsız bir stüdyo. Her projeye tek bir soruyla başlıyoruz: “Bu neden daha keyifli olamasın?”</p>
+          <p class="reveal" data-i18n="about.p2">Sade arayüzler, akıcı animasyonlar ve oynadıkça derinleşen mekanikler — üzerinde çalıştığımız her şeyde aradığımız denge bu.</p>
+          <div class="stats reveal">
+            <div class="stat"><strong data-count="2">0</strong><span data-i18n="about.s1">Yayındaki proje</span></div>
+            <div class="stat"><strong data-count="100" data-suffix="%">0</strong><span data-i18n="about.s2">Bağımsız</span></div>
+            <div class="stat"><strong>∞</strong><span data-i18n="about.s3">Merak</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section projects" id="projects">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow" data-i18n="projects.eyebrow">Projeler</p>
+          <h2 class="h2" data-i18n-html="projects.title">Üzerinde çalıştığımız <span class="gold">işler</span></h2>
+        </div>
+
+        <div class="cards">
+          <!-- Match Mind -->
+          <article class="card reveal tilt">
+            <div class="card__visual card__visual--match" aria-hidden="true">
+              <div class="mm-grid">
+                <div class="mm-card"><div class="mm-front"></div><div class="mm-back">◆</div></div>
+                <div class="mm-card"><div class="mm-front"></div><div class="mm-back">●</div></div>
+                <div class="mm-card"><div class="mm-front"></div><div class="mm-back">▲</div></div>
+                <div class="mm-card"><div class="mm-front"></div><div class="mm-back">◆</div></div>
+                <div class="mm-card"><div class="mm-front"></div><div class="mm-back">▲</div></div>
+                <div class="mm-card"><div class="mm-front"></div><div class="mm-back">●</div></div>
+              </div>
+            </div>
+            <div class="card__body">
+              <div class="card__meta"><span class="pill" data-i18n="tag.game">Oyun</span><span class="pill pill--dim" data-i18n="tag.memory">Hafıza</span></div>
+              <h3>Match Mind</h3>
+              <p data-i18n="mm.desc">Kartları çevir, eşleri bul, hafızanı zorla. Kısa oturumlar için tasarlanmış, oynadıkça zorlaşan bir eşleştirme oyunu.</p>
+              <a href="#" class="card__link" data-i18n="card.more">Detaylar yakında →</a>
+            </div>
+          </article>
+
+          <!-- Turnwise -->
+          <article class="card reveal tilt">
+            <div class="card__visual card__visual--turn" aria-hidden="true">
+              <div class="tw">
+                <div class="tw__ring tw__ring--1"><i></i></div>
+                <div class="tw__ring tw__ring--2"><i></i></div>
+                <div class="tw__ring tw__ring--3"><i></i></div>
+                <div class="tw__core"></div>
+              </div>
+            </div>
+            <div class="card__body">
+              <div class="card__meta"><span class="pill" data-i18n="tag.game">Oyun</span><span class="pill pill--dim" data-i18n="tag.puzzle">Bulmaca</span></div>
+              <h3>Turnwise</h3>
+              <p data-i18n="tw.desc">Halkaları döndür, parçaları hizala. Uzamsal düşünmeyi ve stratejiyi ödüllendiren dairesel bir bulmaca oyunu.</p>
+              <a href="#" class="card__link" data-i18n="card.more">Detaylar yakında →</a>
+            </div>
+          </article>
+
+          <!-- Next -->
+          <article class="card card--next reveal">
+            <div class="card__visual card__visual--next" aria-hidden="true">
+              <img src="assets/logo-white.png" alt="" />
+            </div>
+            <div class="card__body">
+              <div class="card__meta"><span class="pill pill--dim" data-i18n="tag.soon">Yakında</span></div>
+              <h3 data-i18n="next.title">Sıradaki ne?</h3>
+              <p data-i18n="next.desc">Yeni oyunlar ve uygulamalar üzerinde çalışıyoruz. Haberdar olmak için LinkedIn'de takip et.</p>
+              <a href="https://www.linkedin.com/company/ky-studios/" target="_blank" rel="noopener" class="card__link" data-i18n="next.cta">Takip et →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section process" id="process">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow" data-i18n="process.eyebrow">Yaklaşım</p>
+          <h2 class="h2" data-i18n-html="process.title">Nasıl <span class="gold">çalışıyoruz</span></h2>
+        </div>
+        <ol class="steps">
+          <li class="reveal"><span class="steps__n">01</span><h4 data-i18n="p1.t">Merak et</h4><p data-i18n="p1.d">Her şey küçük bir “ya şöyle olsaydı?” sorusuyla başlar. Fikirleri hızlıca prototipleriz.</p></li>
+          <li class="reveal"><span class="steps__n">02</span><h4 data-i18n="p2.t">Sadeleştir</h4><p data-i18n="p2.d">Gereksiz olan her şeyi çıkarırız. Geriye kalan, anında anlaşılan ve keyif veren bir deneyimdir.</p></li>
+          <li class="reveal"><span class="steps__n">03</span><h4 data-i18n="p3.t">Cilala</h4><p data-i18n="p3.d">Animasyonlar, sesler, küçük detaylar. Bir ürünü sevdiren şey çoğu zaman görünmeyen işçiliktir.</p></li>
+          <li class="reveal"><span class="steps__n">04</span><h4 data-i18n="p4.t">Yayınla &amp; dinle</h4><p data-i18n="p4.d">Yayına aldıktan sonra oyuncuları dinler, sürekli geliştiririz.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <div class="contact__glow" aria-hidden="true"></div>
+      <div class="container contact__inner reveal">
+        <p class="eyebrow" data-i18n="contact.eyebrow">İletişim</p>
+        <h2 class="contact__title" data-i18n-html="contact.title">Birlikte bir şey<br /><span class="gold">üretelim mi?</span></h2>
+        <p class="contact__sub" data-i18n="contact.sub">İş birliği, geri bildirim ya da sadece merhaba demek için yaz.</p>
+        <a href="mailto:studios.kyras@gmail.com" class="contact__mail magnetic">studios.kyras@gmail.com</a>
+        <div class="contact__social">
+          <a href="https://www.linkedin.com/company/ky-studios/" target="_blank" rel="noopener" class="social magnetic" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="mailto:studios.kyras@gmail.com" class="social magnetic" aria-label="E-mail">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <span>E-mail</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/logo-white.png" alt="" />
+        <span>K<b>&amp;</b>Y STUDIOS</span>
+      </div>
+      <p>© <span id="year"></span> K&amp;Y Studios. <span data-i18n="footer.rights">Tüm hakları saklıdır.</span></p>
+      <a href="#top" class="footer__top" data-i18n="footer.top">Yukarı ↑</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
