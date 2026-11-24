@@ -48,3 +48,33 @@ Gizlilik politikası ve koşullar bu ayarlara göre **otomatik** yazılır; bir 
 1. `data/projects.js` içine yeni bir blok ekle (mevcut birini kopyala, `slug`'ı değiştir).
 2. Terminalde: `./tools/new-project.sh yeni-slug`
 3. Commit + push. Ana sayfadaki kart ve 4 sayfa kendiliğinden oluşur.
+
+## Google Analytics ve Search Console
+- **Analytics:** `js/config.js` içindeki `gaId: ""` alanına GA4 ölçüm kimliğini yaz (örn. `"G-AB12CD34EF"`).
+  Ziyaretçiye çerez bandı çıkar; Analytics yalnızca "Kabul et" derse yüklenir.
+  Sitenin gizlilik politikasına Analytics bölümü otomatik eklenir. Footer'da "Çerez ayarları" linki çıkar.
+- **Search Console:** `index.html` içindeki `<meta name="google-site-verification" content="">` satırına Google'ın verdiği kodu yaz.
+- **Sitemap:** `sitemap.xml` → Search Console'da "Sitemaps" bölümüne `sitemap.xml` olarak gönder.
+  Yeni proje eklediğinde `new-project.sh` sitemap'i otomatik günceller (elle: `./tools/sitemap.sh`).
+
+### Takip edilen tıklamalar (GA4 olayları)
+Yalnızca ziyaretçi çerezleri kabul ederse gönderilir. Kod: `js/consent.js` → "CLICK TRACKING".
+
+**Her proje kendi adıyla ayrı olay gönderir** (proje adı = slug, tiresiz: `match-mind` → `matchmind`).
+Yeni bir proje eklediğinde olaylar kendiliğinden o projenin adıyla oluşur.
+
+| Olay | Ne zaman |
+|---|---|
+| `matchmind_app_store_click` | MatchMind → App Store butonu |
+| `matchmind_google_play_click` | MatchMind → Google Play butonu (`status`: live / coming_soon) |
+| `matchmind_card_click` | Ana sayfada MatchMind kartı |
+| `matchmind_support_click` / `_privacy_click` / `_terms_click` | MatchMind destek ve yasal sayfa linkleri |
+| `matchmind_email_click` | MatchMind sayfalarından e-posta |
+| `matchmind_faq_open` | MatchMind SSS sorusu açıldı |
+| `turnwise_…` | Aynı olaylar Turnwise için |
+
+**Site geneli olaylar:** `email_click`, `social_click` (LinkedIn), `cta_click`, `nav_click`, `footer_click`,
+`language_change`, `menu_toggle`, `site_privacy_click`, `site_terms_click`, `outbound_click`, `internal_click`.
+
+Tüm olaylarda `page_type` ve `location`; proje olaylarında `project` parametresi de gelir.
+Sayfa görüntülemeleri **İçerik grubu** (`content_group`) ile ayrılır: `matchmind`, `turnwise`, `studio`.
