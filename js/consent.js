@@ -36,10 +36,12 @@
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { dataLayer.push(arguments); };
     gtag("js", new Date());
-    gtag("config", GA);
+    const isGTM = /^GTM-/i.test(GA);
+    if (isGTM) dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    else gtag("config", GA);
     const s = document.createElement("script");
     s.async = true;
-    s.src = `https://www.googletagmanager.com/gtag/js?id=${GA}`;
+    s.src = isGTM ? `https://www.googletagmanager.com/gtm.js?id=${GA}` : `https://www.googletagmanager.com/gtag/js?id=${GA}`;
     document.head.appendChild(s);
   };
   const clearGACookies = () => {
