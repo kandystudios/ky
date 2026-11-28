@@ -87,7 +87,18 @@
         )
         .join("")
     );
+    // The row snapped to the static "next" card before the project cards were inserted in front of it,
+    // and the browser keeps that snap target, which scrolled the row to its end. Start at the first card.
+    const toStart = () => { cards.scrollLeft = 0; };
+    toStart();
+    requestAnimationFrame(toStart);
+    window.addEventListener("load", toStart, { once: true });
+
     const bar = document.querySelector(".cards-bar");
+    const markEnd = () => cards.classList.toggle("at-end", cards.scrollLeft >= cards.scrollWidth - cards.clientWidth - 2);
+    cards.addEventListener("scroll", markEnd, { passive: true });
+    window.addEventListener("resize", markEnd);
+    markEnd();
     if (bar) {
       const [prev, next] = bar.querySelectorAll(".cards-nav");
       const update = () => {

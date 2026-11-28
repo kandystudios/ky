@@ -320,7 +320,8 @@ body.ready .hero__logo-wrap { animation: float 6s ease-in-out 1.6s infinite; }
 /* =========================================================
    Projects / cards
    ========================================================= */
-/* One row that scrolls sideways; 3 cards visible on desktop, 2 on tablet, 1 + a peek on phones. */
+/* One row that scrolls sideways: all projects on desktop (3), 2 on tablet, 1 on phones,
+   each with a faded peek of the next card at the right edge to invite a scroll. */
 .cards {
   display: flex; gap: 1.5rem; overflow-x: auto; overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory; scroll-padding-inline: 0;
@@ -330,7 +331,13 @@ body.ready .hero__logo-wrap { animation: float 6s ease-in-out 1.6s infinite; }
 .cards::-webkit-scrollbar { height: 6px; }
 .cards::-webkit-scrollbar-thumb { background: rgba(242,184,75,.45); border-radius: 6px; }
 .cards::-webkit-scrollbar-track { background: transparent; }
-.cards > .card { flex: 0 0 calc((100% - 3rem) / 3); scroll-snap-align: start; }
+.cards > .card { flex: 0 0 calc((100% - 3rem) / 3.5); scroll-snap-align: start; }
+.cards:not(.at-end) {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 4rem), transparent);
+          mask-image: linear-gradient(to right, #000 calc(100% - 4rem), transparent);
+}
+.cards > .card--next { opacity: .7; filter: saturate(.6); transition: opacity .5s var(--ease), filter .5s var(--ease), border-color .5s var(--ease); }
+.cards > .card--next:hover, .cards.at-end > .card--next { opacity: 1; filter: none; }
 .cards-bar { display: flex; justify-content: flex-end; gap: .6rem; margin: -1.5rem 0 1rem; }
 .cards-bar[hidden] { display: none; }
 .cards-nav {
@@ -508,7 +515,7 @@ body.ready .hero__logo-wrap { animation: float 6s ease-in-out 1.6s infinite; }
    Responsive
    ========================================================= */
 @media (max-width: 1024px) {
-  .cards > .card { flex-basis: calc((100% - 1.5rem) / 2); }
+  .cards > .card { flex-basis: calc((100% - 1.5rem) / 2.4); }
   .steps { grid-template-columns: repeat(2, 1fr); row-gap: 2.5rem; }
 }
 
@@ -547,7 +554,8 @@ body.ready .hero__logo-wrap { animation: float 6s ease-in-out 1.6s infinite; }
 
 @media (max-width: 640px) {
   .cards { gap: 1rem; }
-  .cards > .card { flex-basis: 85%; }
+  .cards > .card { flex-basis: 82%; }
+  .cards:not(.at-end) { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent); }
   .cards-bar { display: none; }
   .steps { grid-template-columns: 1fr; }
   .stats { grid-template-columns: repeat(3, 1fr); gap: .5rem; }
