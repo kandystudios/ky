@@ -87,6 +87,25 @@
         )
         .join("")
     );
+    const bar = document.querySelector(".cards-bar");
+    if (bar) {
+      const [prev, next] = bar.querySelectorAll(".cards-nav");
+      const update = () => {
+        const max = cards.scrollWidth - cards.clientWidth;
+        bar.hidden = max <= 2;
+        prev.disabled = cards.scrollLeft <= 2;
+        next.disabled = cards.scrollLeft >= max - 2;
+      };
+      bar.querySelectorAll(".cards-nav").forEach((b) =>
+        b.addEventListener("click", () => {
+          const step = cards.querySelector(".card")?.getBoundingClientRect().width || cards.clientWidth;
+          cards.scrollBy({ left: Number(b.dataset.dir) * (step + 24), behavior: "smooth" });
+        })
+      );
+      cards.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    }
     const live = document.querySelector("[data-count-projects]");
     if (live) live.dataset.count = projects.filter((p) => p.status !== "soon").length;
   }
