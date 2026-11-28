@@ -97,6 +97,83 @@ window.KY_PROJECTS = [
   },
 
   {
+    slug: "noris-dice-journey",
+    name: "Nori's Dice Journey",
+    visual: "icon",
+    icon: "assets/projects/noris-dice-journey/icon.png",
+    status: "soon",
+    platforms: ["android", "ios"],
+    stores: { appStore: "", googlePlay: "", web: "" },
+    // ⚠️ GİZLİLİK AYARLARI — Play Console "Veri güvenliği" ve App Store "App Privacy" beyanıyla aynı olmalı.
+    privacy: {
+      ads: true,                  // Google AdMob, yalnızca isteğe bağlı ödüllü videolar (UMP onay penceresi var)
+      analytics: false,           // Analitik SDK'sı yok
+      crashReports: false,        // Crashlytics vb. yok
+      purchases: true,            // Google Play / App Store uygulama içi satın alma
+      account: false,             // Hesap yok, ilerleme cihazda (JSON)
+      gameCenter: false,
+      notifications: true,        // İsteğe bağlı yerel hatırlatma (canlar doldu)
+    },
+    updated: "2026-11-28",
+    tags: { tr: ["Zar", "Masa oyunu"], en: ["Dice", "Board"], ru: ["Кости", "Настольная"] },
+    tagline: {
+      tr: "Zar at, bankala, Nori ile şehir şehir gez.",
+      en: "Roll, bank and travel city to city with Nori.",
+      ru: "Бросайте кости, фиксируйте очки и путешествуйте с Нори.",
+    },
+    summary: {
+      tr: "Klasik Farkle zar oyunu, internetsiz. Kaşif kedi Nori ile beş şehirde 55 bölüm, akıllı rakipler ve aynı telefonda iki kişilik oyun.",
+      en: "The classic Farkle dice game, offline. Join Nori the explorer cat on a journey through five cities and 55 levels, with clever rivals and two-player games on one phone.",
+      ru: "Классическая игра в кости Farkle без интернета. Отправляйтесь с котом-путешественником Нори в пять городов: 55 уровней, хитрые соперники и игра вдвоём на одном телефоне.",
+    },
+    description: {
+      tr: "Nori'nin Zar Yolculuğu, Farkle (10000, Zilch, Greed veya Hot Dice olarak da bilinir) zar oyununu bir yolculuğa dönüştürür. Zarları at, puanlı zarları ayır ve karar ver: puanı bankalayacak mısın, yoksa risk alıp tekrar mı atacaksın? Kaşif kedi Nori ile beş şehri gez, her bölümün hedefini tamamla, yıldız topla ve yeni şehirlerin kilidini aç. Güçlendiriciler, şehir zarları ve yolculuk albümü seni bekliyor. Oyun internetsiz oynanır; reklamlar sadece senin seçtiğin ödüllü videolardır.",
+      en: "Nori's Dice Journey turns Farkle (also known as 10000, Zilch, Greed or Hot Dice) into a journey. Roll the dice, set aside the scoring ones and decide: bank your points or risk another roll? Travel through five cities with Nori the explorer cat, beat each level's goal, collect stars and unlock new cities. Boosters, city dice and a travel album are waiting. The game plays offline, and the only ads are rewarded videos you choose to watch.",
+      ru: "Nori's Dice Journey превращает Farkle (также известную как 10000, Zilch или Greed) в путешествие. Бросайте кости, откладывайте выигрышные и решайте: зафиксировать очки или рискнуть ещё одним броском? Путешествуйте с котом-исследователем Нори по пяти городам, выполняйте цели уровней, собирайте звёзды и открывайте новые города. Вас ждут усилители, кости городов и альбом путешествий. Игра работает без интернета, а реклама — только видео с наградой, которые вы смотрите по желанию.",
+    },
+    features: {
+      tr: [
+        ["Klasik Farkle", "Zar at, bankala ya da riske gir. Kolay öğrenilir, her tur yeni bir karar."],
+        ["Beş şehir, 55 bölüm", "Her bölümde farklı hedefler, yıldızlar ve şehir patronları."],
+        ["Rakipler ve iki kişilik oyun", "Yapay zekâya karşı oyna ya da aynı telefonda bir arkadaşınla."],
+        ["Rahat ve internetsiz", "Hesap yok, internet gerekmez; günlük ödüller, görevler ve albüm."],
+      ],
+      en: [
+        ["Classic Farkle", "Roll, bank or push your luck. Easy to learn, a new decision every turn."],
+        ["Five cities, 55 levels", "Different goals, stars and city bosses in every level."],
+        ["Rivals and two-player games", "Play against the AI or with a friend on the same phone."],
+        ["Cosy and offline", "No account, no internet needed; daily rewards, missions and an album."],
+      ],
+      ru: [
+        ["Классический Farkle", "Бросайте, фиксируйте или рискуйте. Легко научиться, каждый ход — новое решение."],
+        ["Пять городов, 55 уровней", "Разные цели, звёзды и боссы городов на каждом уровне."],
+        ["Соперники и игра вдвоём", "Играйте против ИИ или с другом на одном телефоне."],
+        ["Уютно и офлайн", "Без учётной записи и интернета; ежедневные награды, задания и альбом."],
+      ],
+    },
+    faq: {
+      tr: [
+        ["Hesap açmam gerekiyor mu?", "Hayır. İlerlemen cihazında saklanır."],
+        ["İnternet bağlantısı gerekiyor mu?", "Hayır, oyun internetsiz oynanır. Sadece ödüllü video izlemek için internet gerekir."],
+        ["Oyun sırasında reklam çıkar mı?", "Hayır. Araya giren reklam yoktur; yalnızca ödül almak için kendi seçtiğin videoları izlersin."],
+        ["Canlar nasıl çalışır?", "Bir bölümü kaybedince bir can gider, kazanmak can harcamaz. Canlar zamanla kendiliğinden dolar."],
+      ],
+      en: [
+        ["Do I need an account?", "No. Your progress is saved on your device."],
+        ["Do I need an internet connection?", "No, the game plays offline. Internet is only needed to watch rewarded videos."],
+        ["Will ads interrupt my game?", "No. There are no interrupting ads; you only watch videos you choose, to earn rewards."],
+        ["How do lives work?", "Losing a level costs one life; winning is free. Lives refill on their own over time."],
+      ],
+      ru: [
+        ["Нужна ли учётная запись?", "Нет. Прогресс сохраняется на вашем устройстве."],
+        ["Нужен ли интернет?", "Нет, игра работает офлайн. Интернет нужен только для просмотра видео с наградой."],
+        ["Будет ли реклама мешать игре?", "Нет. Навязчивой рекламы нет: вы смотрите видео только по желанию, чтобы получить награду."],
+        ["Как работают жизни?", "Проигрыш уровня стоит одну жизнь, победа — бесплатна. Жизни восстанавливаются со временем."],
+      ],
+    },
+  },
+
+  {
     slug: "turnwise",
     name: "Turnwise",
     visual: "screw",
